@@ -1,0 +1,3126 @@
+{
+    "success": true, 
+    "data": [
+        {
+            "id": "58ad76db7872ea0864fedfcc", 
+            "author_id": "51f0f267f4963ade0e08f503", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p><img src=\"//dn-cnode.qbox.me/FlwW5i2h_UuKpnBXXvD3AqyrwjHP\" alt=\"untitled4.png\"></p>
+<h1>饿了么大前端 Node.js 进阶教程</h1>
+<p>因为 2016 年面试了很多做 Node.js 的同学，发现大部分做 Node 的同学都是前端转过来的，对后端的知识大多一片空白。所以很难招到比较好的 Node.js 服务端程序员（注意，不是全栈）。</p>
+<p>于是出于我们一贯的开源与分享精神，我们筹备了这个名字叫《如何通过饿了么 Node.js 面试》的开源的 Node.js 进阶教程。</p>
+<p>github 仓库地址：<a href=\"https://github.com/ElemeFE/node-interview\">https://github.com/ElemeFE/node-interview</a></p>
+<h3>导读</h3>
+<p>本教程包含 2~3 年经验的 Node.js 服务端需要知道的知识点。</p>
+<p>需要注意的是, 并不适用于零基础的同学, 你需要有一定的 JavaScript/Node.js 基础, 并且有一定的工作经验. 另外本教程的重点更准确的说是服务端基础中 Node.js 程序员需要了解的部分.</p>
+<p>稳重将一些常见的问题划分归类, 每类标明涵盖的一些<code>覆盖点</code>, 并且列举几个<code>常见问题</code>, 通常这些问题都是 2~3 年工作经验需要了解或者面对的. 如果你对某类问题感兴趣, 或者想知道其中列举问题的答案, 可以通过该类下方的 <code>阅读更多</code> 查看更多的内容.</p>
+<p>整体上大纲列举的并不是很全面, 细节上覆盖率不高, 很多讨论只是点到即止, 希望大家带着问题去思考.</p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md\">Js 基础问题</a></h2>
+<blockquote>
+<p>与前端 Js 不同, 后端是直面服务器的, 更加偏向内存方面.</p>
+</blockquote>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md#%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD\"><code>[Basic]</code> 类型判断</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md#%E4%BD%9C%E7%94%A8%E5%9F%9F\"><code>[Basic]</code> 作用域</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md#%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92\"><code>[Basic]</code> 引用传递</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md#%E5%86%85%E5%AD%98%E9%87%8A%E6%94%BE\"><code>[Basic]</code> 内存释放</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md#es6-%E6%96%B0%E7%89%B9%E6%80%A7\"><code>[Basic]</code> ES6 新特性</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>js 中什么类型是引用传递, 什么类型是值传递? 如何将值类型的变量以引用的方式传递? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md#q-value\">[more]</a></li>
+<li>js 中， 0.1 + 0.2 === 0.3 是否为 true ? 在不知道浮点数位数时应该怎样判断两个浮点数之和与第三数是否相等？</li>
+<li>const 定义的 Array 中间元素能否被修改? 如果可以, 那 const 的意义是? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md#q-const\">[more]</a></li>
+<li>JavaScript 中不同类型以及不同环境下变量的内存都是何时释放? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md#q-mem\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/js-basic.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/module.md\">模块</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/module.md#%E6%A8%A1%E5%9D%97%E6%9C%BA%E5%88%B6\"><code>[Basic]</code> 模块机制</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/module.md#%E7%83%AD%E6%9B%B4%E6%96%B0\"><code>[Basic]</code> 热更新</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/module.md#%E4%B8%8A%E4%B8%8B%E6%96%87\"><code>[Basic]</code> 上下文</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>a.js 和 b.js 两个文件互相 require 是否会死循环? 双方是否能导出变量? 如何从设计上避免这种问题? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/module.md#q-loop\">[more]</a></li>
+<li>如果 a.js require 了 b.js, 那么在 b 中定义全局变量 <code>t = 111</code> 能否在 a 中直接打印出来? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/module.md#q-global\">[more]</a></li>
+<li>如何在不重启 node 进程的情况下热更新一个 js/json 文件? 这个问题本身是否有问题? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/module.md#q-hot\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/module.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md\">事件/异步</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#promise\"><code>[Basic]</code> Promise</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#events\"><code>[Doc]</code> Events (事件)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#timers\"><code>[Doc]</code> Timers (定时器)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#%E9%98%BB%E5%A1%9E%E5%BC%82%E6%AD%A5\"><code>[Point]</code> 阻塞/异步</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#%E5%B9%B6%E8%A1%8C%E5%B9%B6%E5%8F%91\"><code>[Point]</code> 并行/并发</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>Promise 中 .then 的第二参数与 .catch 有什么区别? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#q-1\">[more]</a></li>
+<li>Eventemitter 的 emit 是同步还是异步? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#q-2\">[more]</a></li>
+<li>如何判断接口是否异步? 是否只要有回调函数就是异步? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#q-3\">[more]</a></li>
+<li>nextTick, setTimeout 以及 setImmediate 三者有什么区别? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#q-4\">[more]</a></li>
+<li>如何实现一个 sleep 函数? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#q-5\">[more]</a></li>
+<li>如何实现一个异步的 reduce? (注:不是异步完了之后同步 reduce) <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md#q-6\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/event-async.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md\">进程</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#process\"><code>[Doc]</code> Process (进程)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#child-process\"><code>[Doc]</code> Child Processes (子进程)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#cluster\"><code>[Doc]</code> Cluster (集群)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1\"><code>[Basic]</code> 进程间通信</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B\"><code>[Basic]</code> 守护进程</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>进程的当前工作目录是什么? 有什么作用? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#q-cwd\">[more]</a></li>
+<li>child_process.fork 与 POSIX 的 fork 有什么区别? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#q-fork\">[more]</a></li>
+<li>父进程或子进程的死亡是否会影响对方? 什么是孤儿进程? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#q-child\">[more]</a></li>
+<li>cluster 是如何保证负载均衡的? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#how-it-works\">[more]</a></li>
+<li>什么是守护进程? 如何实现守护进程? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/process.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md\">IO</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#buffer\"><code>[Doc]</code> Buffer</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#string-decoder\"><code>[Doc]</code> String Decoder (字符串解码)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#stream\"><code>[Doc]</code> Stream (流)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#console\"><code>[Doc]</code> Console (控制台)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#file\"><code>[Doc]</code> File System (文件系统)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#readline\"><code>[Doc]</code> Readline</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#repl\"><code>[Doc]</code> REPL</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>Buffer 一般用于处理什么数据? 其长度能否动态变化? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#buffer\">[more]</a></li>
+<li>Stream 的 highWaterMark 与 drain 事件是什么? 二者之间的关系是? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#%E7%BC%93%E5%86%B2%E5%8C%BA\">[more]</a></li>
+<li>Stream 的 pipe 的作用是? 在 pipe 的过程中数据是引用传递还是拷贝传递? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#pipe\">[more]</a></li>
+<li>什么是文件描述符? 输入流/输出流/错误流是什么? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#file\">[more]</a></li>
+<li>console.log 是同步还是异步? 如何实现一个 console.log? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#console\">[more]</a></li>
+<li>如何同步的获取用户的输入?  <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#%E5%A6%82%E4%BD%95%E5%90%8C%E6%AD%A5%E7%9A%84%E8%8E%B7%E5%8F%96%E7%94%A8%E6%88%B7%E7%9A%84%E8%BE%93%E5%85%A5\">[more]</a></li>
+<li>Readline 是如何实现的? (有思路即可) <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md#readline\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/io.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md\">Network</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#net\"><code>[Doc]</code> Net (网络)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#udp\"><code>[Doc]</code> UDP/Datagram</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#http\"><code>[Doc]</code> HTTP</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#dns\"><code>[Doc]</code> DNS (域名服务器)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#zlib\"><code>[Doc]</code> ZLIB (压缩)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#rpc\"><code>[Point]</code> RPC</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>cookie 与 session 的区别? 服务端如何清除 cookie? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#q-cookie-session\">[more]</a></li>
+<li>HTTP 协议中的 POST 和 PUT 有什么区别? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#q-post-put\">[more]</a></li>
+<li>什么是跨域请求? 如何允许跨域? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#q-cors\">[more]</a></li>
+<li>TCP/UDP 的区别? TCP 粘包是怎么回事，如何处理? UDP 有粘包吗? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#q-tcp-udp\">[more]</a></li>
+<li><code>TIME_WAIT</code> 是什么情况? 出现过多的 <code>TIME_WAIT</code> 可能是什么原因? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#q-time-wait\">[more]</a></li>
+<li>ECONNRESET 是什么错误? 如何复现这个错误?</li>
+<li>socket hang up 是什么意思? 可能在什么情况下出现? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md#socket-hang-up\">[more]</a></li>
+<li>hosts 文件是什么? 什么叫 DNS 本地解析?</li>
+<li>列举几个提高网络传输速度的办法?</li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/network.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md\">OS</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#tty\"><code>[Doc]</code> TTY</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#os\"><code>[Doc]</code> OS (操作系统)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#path\"><code>[Doc]</code> Path</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8F%82%E6%95%B0\"><code>[Doc]</code> 命令行参数</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#%E8%B4%9F%E8%BD%BD\"><code>[Basic]</code> 负载</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#checklist\"><code>[Point]</code> CheckList</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>什么是 TTY? 如何判断是否处于 TTY 环境? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#tty\">[more]</a></li>
+<li>不同操作系统的换行符 (EOL) 有什么区别? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#os\">[more]</a></li>
+<li>服务器负载是什么概念? 如何查看负载? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#%E8%B4%9F%E8%BD%BD\">[more]</a></li>
+<li>ulimit 是用来干什么的? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md#ulimit\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/os.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md\">错误处理/调试/优化</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#errors\"><code>[Doc]</code> Errors (异常)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#domain\"><code>[Doc]</code> Domain (域)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#debugger\"><code>[Doc]</code> Debugger (调试器)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#c-c++-addon\"><code>[Doc]</code> C/C++ 插件</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#v8\"><code>[Doc]</code> V8</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#%E5%86%85%E5%AD%98%E5%BF%AB%E7%85%A7\"><code>[Point]</code> 内存快照</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#cpu-profiling\"><code>[Point]</code> CPU profiling</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>怎么处理未预料的出错? 用 try/catch ，domains 还是其它什么? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#q-handle-error\">[more]</a></li>
+<li>什么是 <code>uncaughtException</code> 事件? 一般在什么情况下使用该事件? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#uncaughtexception\">[more]</a></li>
+<li>domain 的原理是? 为什么要弃用 domain? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#domain\">[more]</a></li>
+<li>什么是防御性编程? 与其相对的 let it crash 又是什么?</li>
+<li>为什么要在 cb 的第一参数传 error? 为什么有的 cb 第一个参数不是 error, 例如 http.createServer?</li>
+<li>为什么有些异常没法根据报错信息定位到代码调用? 如何准确的定位一个异常? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#%E9%94%99%E8%AF%AF%E6%A0%88%E4%B8%A2%E5%A4%B1\">[more]</a></li>
+<li>内存泄漏通常由哪些原因导致? 如何分析以及定位内存泄漏? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md#%E5%86%85%E5%AD%98%E5%BF%AB%E7%85%A7\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/error.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md\">测试</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95\"><code>[Basic]</code> 测试方法</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95\"><code>[Basic]</code> 单元测试</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95\"><code>[Basic]</code> 集成测试</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#%E5%9F%BA%E5%87%86%E6%B5%8B%E8%AF%95\"><code>[Basic]</code> 基准测试</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95\"><code>[Basic]</code> 压力测试</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#assert\"><code>[Doc]</code> Assert (断言)</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>为什么要写测试? 写测试是否会拖累开发进度?<a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#q-why-write-test\">[more]</a></li>
+<li>单元测试的单元是指什么? 什么是覆盖率?<a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95\">[more]</a></li>
+<li>测试是如何保证业务逻辑中不会出现死循环的?<a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#q-death-loop\">[more]</a></li>
+<li>mock 是什么? 一般在什么情况下 mock?<a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md#mock\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/test.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/util.md\">util</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/util.md#url\"><code>[Doc]</code> URL</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/util.md#query-strings\"><code>[Doc]</code> Query Strings (查询字符串)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/util.md#util-1\"><code>[Doc]</code> Utilities (实用函数)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/util.md#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F\"><code>[Basic]</code> 正则表达式</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>HTTP 如何通过 GET 方法 (URL) 传递 let arr = [1,2,3,4] 给服务器? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/util.md#get-param\">[more]</a></li>
+<li>Node.js 中继承 (util.inherits) 的实现? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/util.md#utilinherits\">[more]</a></li>
+<li>如何递归获取某个文件夹下所有的文件名? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/util.md#q-traversal\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/util.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md\">存储</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#mysql\"><code>[Point]</code> Mysql</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#mongodb\"><code>[Point]</code> Mongodb</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#replication\"><code>[Point]</code> Replication</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7\"><code>[Point]</code> 数据一致性</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#%E7%BC%93%E5%AD%98\"><code>[Point]</code> 缓存</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>备份数据库与 M/S, M/M 等部署方式的区别? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#replication\">[more]</a></li>
+<li>索引有什么用，大致原理是什么? 设计索引有什么注意点? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#%E7%B4%A2%E5%BC%95\">[more]</a></li>
+<li>Monogdb 连接问题(超时/断开等)有可能是什么问题导致的? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#Mongodb\">[more]</a></li>
+<li>什么情况下数据会出现脏数据? 如何避免? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7\">[more]</a></li>
+<li>redis 与 memcached 的区别? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md#%E7%BC%93%E5%AD%98\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/storage.md\">阅读更多</a></p>
+<h2><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md\">安全</a></h2>
+<ul>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#crypto\"><code>[Doc]</code> Crypto (加密)</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#tlsssl\"><code>[Doc]</code> TLS/SSL</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#https\"><code>[Doc]</code> HTTPS</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#xss\"><code>[Point]</code> XSS</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#csrf\"><code>[Point]</code> CSRF</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB\"><code>[Point]</code> 中间人攻击</a></li>
+<li><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#sqlnosql-%E6%B3%A8%E5%85%A5\"><code>[Point]</code> Sql/Nosql 注入</a></li>
+</ul>
+<h3>常见问题</h3>
+<ul>
+<li>加密是如何保证用户密码的安全性? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#crypto\">[more]</a></li>
+<li>TLS 与 SSL 有什么区别? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#tlsssl\">[more]</a></li>
+<li>HTTPS 能否被劫持? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#https\">[more]</a></li>
+<li>XSS 攻击是什么? 有什么危害? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#xss\">[more]</a></li>
+<li>过滤 Html 标签能否防止 XSS? 请列举不能的情况? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#xss\">[more]</a></li>
+<li>CSRF 是什么? 如何防范? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#csrf\">[more]</a></li>
+<li>如何避免中间人攻击? <a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md#%E4%B8%AD%E9%97%B4%E4%BA%BA%E6%94%BB%E5%87%BB\">[more]</a></li>
+</ul>
+<p><a href=\"https://github.com/ElemeFE/node-interview/blob/master/sections/zh-cn/security.md\">阅读更多</a></p>
+<h2>最后</h2>
+<p>目前 repo 处于施工现场的情况，如果发现问题欢迎在 <a href=\"https://github.com/ElemeFE/node-interview/issues\">issues</a> 中指出。如果有比较好的<code>问题/知识点/指正</code>，也欢迎提 PR。</p>
+<p>另外关于 <code>Js 基础</code> 是个比较大的话题，在本教程不会很细致深入的讨论，更多的是列出一些重要或者更服务端更相关的地方，所以如果你拿着《JavaScript 权威指南》给教程提 PR 可能不会采纳。本教程的重点更准确的说是服务端基础中 Node.js 程序员需要了解的部分。</p>
+</div>", 
+            "title": "饿了么大前端 Node.js 进阶教程", 
+            "last_reply_at": "2017-05-20T08:07:36.099Z", 
+            "good": true, 
+            "top": true, 
+            "reply_count": 137, 
+            "visit_count": 46847, 
+            "create_at": "2017-02-22T11:32:43.547Z", 
+            "author": {
+                "loginname": "lellansin", 
+                "avatar_url": "https://avatars1.githubusercontent.com/u/2081487?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "58d0fb3517f61387400b7e15", 
+            "author_id": "4f447c2f0a8abae26e01b27d", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p><img src=\"http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/1ac00bee5abd7cc1d9a9435f861acba6.png\" alt=\"screenshot.png\"></p>
+<blockquote>
+<p>原文地址：<a href=\"https://zhuanlan.zhihu.com/p/25860846\">https://zhuanlan.zhihu.com/p/25860846</a></p>
+</blockquote>
+<hr>
+<p>时光如梭，转眼间 Egg.js 已经开源半年了，我们很荣幸地宣布，Egg.js 正式发布 1.0 版本。</p>
+<ul>
+<li>官网传送门：<a href=\"https://eggjs.org\">https://eggjs.org</a></li>
+<li>GitHub：<a href=\"https://github.com/eggjs/egg\">https://github.com/eggjs/egg</a></li>
+<li>Egg.js 英文文档：与 SwiftGG 翻译组强强联合，中译英的小伙伴招募中，如果你有兴趣，请试译 这篇文章 ，并注明你的 qq 号，发送给 SwiftGG 的同学邮箱(<a href=\"mailto:1030041592@qq.com\">1030041592@qq.com</a>)。期待你的加入！</li>
+</ul>
+<h2>特点</h2>
+<ul>
+<li><strong>『企业级的 Node.js Web 基础框架』</strong>，寓意 - 孕育新生。</li>
+<li>业界领先的 <strong>『微内核 + 插件机制』</strong>，专为团队架构师量身打造的 <strong>『框架定制』</strong> 能力。</li>
+<li>内建的安全机制与多进程管理模型。</li>
+<li>高可用，高质量，严格遵循 Semver 规则，测试覆盖率 100%（travis/appveyor)。</li>
+<li>同时支持 koa 1.x 和 2.x 生态，支持 ES 2017 Async Await。</li>
+<li>沉淀自阿里各行各业不同领域最佳实践的插件，涵盖了常见的业务开发场景，稳定支撑了 15 和 16 年天猫双11大促，顶级流量压力。</li>
+<li>渐进式，极具伸缩性，既适合个人小项目快速开发，也适合企业级的团队开发协作。</li>
+</ul>
+<blockquote>
+<p>更详细的特点，以及 Node.js 在阿里的定位，可以参见： <a href=\"https://www.zhihu.com/question/50526101/answer/144952130\">如何评价阿里开源的企业级 Node.js 框架 egg？</a></p>
+</blockquote>
+<h2>里程碑</h2>
+<ul>
+<li>2013 年蚂蚁的 chair 框架，可视为 Egg.js 前身。</li>
+<li>2015 年 11 月，在苏千的召集下，阿里各 BU 的前端骨干齐聚黄龙，闭门共建一周。</li>
+<li>2016 年初，各 BU 的基础 Web 框架完成升级，在同一套规范的基础上进行差异化定制。</li>
+<li>2016 年中，成为阿里 Node.js 基建，广泛使用在绝大部分阿里的前端 Node.js 应用。</li>
+<li>2016 年 09 月，在 <a href=\"http://2016.jsconf.cn/\">JSConf China 2016</a> 上亮相并宣布开源。</li>
+<li>2017 年初，经过一周的<a href=\"https://cnodejs.org/topic/5870e9da04dcf9a706a745f0\">闭关直播写文档</a>，期待已久的 <a href=\"https://eggjs.org/\">官方文档</a> 诚意登场，足足近 30 篇。</li>
+<li>2017年 02 月，知乎问答：<a href=\"https://www.zhihu.com/question/50526101/answer/144952130\">如何评价阿里开源的企业级 Node.js 框架 egg？</a></li>
+<li>2017 年 02 月第 2 周，上了 <strong>GitHub Trending</strong> 周榜第三，Star 数增加 1k 多。</li>
+<li>2017 年 03 月 21 日，Egg.js 正式发布 1.0.0 。</li>
+</ul>
+<h2>成就</h2>
+<ul>
+<li>截止到今天，2250+ Star，50+ 插件，10+ 核心开发者，30+ 贡献者。</li>
+<li>GitHub Trending 周榜第三，并上了 Node Weekly 周刊。</li>
+<li>官网 UV 日均 300+ 。</li>
+</ul>
+<p><img src=\"http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/2a69766ae55cab517418e7b2f004d9b9.png\" alt=\"screenshot.png\"></p>
+<ul>
+<li>Node TSC Director - Rod Vagg 在 Twitter 上关注并转发。</li>
+</ul>
+<p><img src=\"http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/42f3483f8c7b9a39678958816f477ae2.png\" alt=\"screenshot.png\"></p>
+<h2>感言</h2>
+<p><img src=\"http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/6461618ea8944a1fb5ada1db8aeb7de7.png\" alt=\"screenshot.png\"></p>
+<h2>规划</h2>
+<ul>
+<li>Egg.js 英文文档翻译，欢迎加入 <a href=\"http://swift.gg/\">SwiftGG 翻译组</a> 发起的 <a href=\"https://github.com/eggjs/egg/issues/363\">Egg 文档翻译项目</a>。</li>
+<li>继续完善文档，沉淀最佳实践，并帮助社区产出更多的插件和上层框架。</li>
+<li>Node.js 8 LTS 发布后，底层将无缝升级到 Koa<a href=\"/user/2\">@2</a> 。</li>
+</ul>
+</div>", 
+            "title": "Egg.js 1.0.0 正式发布 - 企业级 Node.js 框架", 
+            "last_reply_at": "2017-05-19T00:51:15.472Z", 
+            "good": false, 
+            "top": true, 
+            "reply_count": 142, 
+            "visit_count": 26613, 
+            "create_at": "2017-03-21T10:06:45.487Z", 
+            "author": {
+                "loginname": "atian25", 
+                "avatar_url": "https://avatars.githubusercontent.com/u/227713?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "58eee565a92d341e48cfe7fc", 
+            "author_id": "54009f5ccd66f2eb37190485", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><h1>2017，我们来聊聊 Node.js</h1>
+<h2>版本帝？</h2>
+<p>Chrome浏览器已经蹦到57版本了，是名副其实的版本帝，作为兄弟的Node.js也一样，1.0之前等了6年，而从1.0到8.0，只用了2年时间，这世界到底怎么了？</p>
+<p>我们就数一下</p>
+<ul>
+<li>从v0.1到0.12用了6年</li>
+<li>2015-01-14发布了v1.0.0版本（io.js）</li>
+<li>2.x（io.js）</li>
+<li>3.x（io.js）</li>
+<li>2015年09月Node.js基金会已发布Node.js V4.0版 与io.js合并后的第一个版本</li>
+<li>2015年10月Node.jsv4.2.0将是首个lts长期支持版本</li>
+<li>2016年底发布到4.2.4 && 5.4.0</li>
+<li>2016年3月20日v4.4.0 LTS（长期支持版本）和v5.9.0 Stable（稳定版本）</li>
+<li>2016 年底 v6.0 支持95%以上的es6特性 ， v7.0通过flag支持async函数，99%的es6特性</li>
+<li>2017年2月发布v7.6版本，可以不通过flag使用async函数</li>
+</ul>
+<p><img src=\"//dn-cnode.qbox.me/Fv8fvViUeOJpBlOWYzBo1txRUhdN\" alt=\"lts-schedule.png\"></p>
+<p>整体来说趋于稳定</p>
+<ul>
+<li>成立了Node.js基金会，能够让Node.js在未来有更好的开源社区支持</li>
+<li>发布了LTS版本，意味着api稳定</li>
+<li>快速发版本，很多人吐槽这个，其实换个角度看，这也是社区活跃的一个体现，但如果大家真的看CHANGELOG，其实都是小改进，而且是边边角角的改进，也就是说Node.js的core（核心）已经非常稳定了，可以大规模使用</li>
+</ul>
+<h2>已无性能优势？</h2>
+<p>Node.js在2009年横空出世，可以说是纯异步获得高性能的功劳。所有语言几乎没有能够和它相比的，比如Java、PHP、Ruby都被啪啪的打脸。但是山一程，水一程，福祸相依，因为性能太出众，导致很多语言、编程模型上有更多探索，比如go语言产生、php里的swolo和vm改进等，大家似乎都以不支持异步为耻辱。后来的故事大家都知道了，性能都提到非常高，c10问题已经没人再考虑，只是大家实现早晚而产生的性能差距而已。</p>
+<blockquote>
+<p>编程语言的性能趋于一样的极限，所以剩下的选择，只有喜好</p>
+</blockquote>
+<p>那么在这种情况下，Node.js还有优势么？</p>
+<ul>
+<li>实现成本：Node.js除了异步流程控制稍复杂外，其他的都非常简单，比如写法，你可以面向过程、面向对象、函数式，根据自己的解决选择就好了。不要因为它现在变化快，就觉得自己跟不上潮流。尤其是后端程序员转Node.js几乎是2周以内的成本，某些语言光熟悉语法习惯也不止2周吧？</li>
+<li>调优成本：Node.js即使不优化，它的性能也非常好，如果优化，也比其他语言更简单</li>
+<li>学习成本：是否必须用，如果是必须要用，那就少学一样是一样，人生有限，不能都花在写hello world上。我想问，大前端离得开js么？</li>
+</ul>
+<blockquote>
+<p>误读：Node.js已无性能优势，它现在最强大的是基于npm的生态</p>
+</blockquote>
+<p>上面是成本上的比较，其实大家把关注点都转移到基于npm的生态上，截止2017年2月，在npm上有超过45万个模块，秒杀无数。npm是所有的开源的包管理里最强大的，我们说更了不起的Node.js，其实npm居功甚伟，后面会有独立的章节进行阐述。</p>
+<p>来自<a href=\"http://www.modulecounts.com/\">www.modulecounts.com</a>的各个包管理模块梳理的比较</p>
+<p><img src=\"//dn-cnode.qbox.me/FjmazMxffKETUdl9-NVoSqLB-DyT\" alt=\"Screen Shot 2017-04-04 at 21.02.41.png\">
+npm生态是Node的优势不假，可是说“Node.js没有性能优势”真的对么？这其实就是误读，Node.js的性能依然很好呀，而且它有npm极其强大的生态，可谓性能与生态双剑合璧，你说你死不死？</p>
+<h2>异步和回调地狱？</h2>
+<blockquote>
+<p>天生异步，败也异步，成也异步</p>
+</blockquote>
+<p>正因为异步导致了api设计方式只能采用error-first风格的回调，于是大家硬生生的把callback写成了callback hell。于是各种黑粉就冒出来，无非是一些浅尝辄止之辈。但也正因为回调地狱是最差实践，所以大家才不得不求变，于是thunk、promise等纷沓而至。虽然Promise/A+不完美，但对于解决回调地狱是足够的了。而且随着ES6等规范实现，引入generator、co等，让异步越来越近于同步。当async函数落地的时候，Node已经站在了同C#、Python一样的高度上，大家还有什么理由黑呢？</p>
+<p>本小节先科普一下异步流程里的各种概念，后面会有独立章节进行详细讲解</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>说明</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>callback</td>
+<td>Node.js API天生就是这样的</td>
+<td></td>
+</tr>
+<tr>
+<td>thunk</td>
+<td>参数的求值策略</td>
+<td></td>
+</tr>
+<tr>
+<td>promise</td>
+<td>最开始是Promise/A+规范，随后成为ES6标准</td>
+<td></td>
+</tr>
+<tr>
+<td>generator</td>
+<td>ES6种的生成器，用于计算，但tj想用做流程控制</td>
+<td></td>
+</tr>
+<tr>
+<td>co</td>
+<td>generator用起来非常麻烦，故而tj写了co这个generator生成器，用法更简单</td>
+<td></td>
+</tr>
+<tr>
+<td>async函数</td>
+<td>原本计划进入es7规范，结果差一点，但好在v8实现了，所以node 7就可以使用，无须等es7规范落地</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>有时，将一件事儿做到极致，也许能有另一种天地</p>
+</blockquote>
+<h2>应用场景</h2>
+<p>MEAN是一个Javascript平台的现代Web开发框架总称，它是MongoDB + Express +AngularJS + NodeJS 四个框架的第一个字母组合。它与传统LAMP一样是一种全套开发工具的简称。在2014和2015年喜欢讲这个，并且还有MEAN.js等框架，但今天已经过时，Node.js有了更多的应用场景。</p>
+<p>《Node.js in action》一书里说，Node所针对的应用程序有一个专门的简称：DIRT。它表示数据密集型实时（data-intensive real-time）程序。因为Node自身在I/O上非常轻量，它善于将数据从一个管道混排或代理到另一个管道上，这能在处理大量请求时持有很多开放的连接，并且只占用一小部分内存。它的设计目标是保证响应能力，跟浏览器一样。</p>
+<p>这话不假，但在今天来看，DIRT还是范围小了。其实DIRT本质上说的I/O处理的都算，但随着大前端的发展，Node.js已经不再只是I/O处理相关，而是更加的“Node”！</p>
+<p>这里给出Node.js的若干使用场景</p>
+<ul>
+<li>网站（如express/koa等）</li>
+<li>im即时聊天(<a href=\"http://socket.io\">socket.io</a>)</li>
+<li>api（移动端，pc，h5）</li>
+<li>HTTP Proxy（淘宝、Qunar、腾讯、百度都有）</li>
+<li>前端构建工具(grunt/gulp/bower/webpack/fis3…)</li>
+<li>写操作系统（NodeOS）</li>
+<li>跨平台打包工具（PC端的electron、nw.js，比如钉钉PC客户端、微信小程序IDE、微信客户端，移动的cordova，即老的Phonegap，还有更加有名的一站式开发框架ionicframework）</li>
+<li>命令行工具（比如cordova、shell.js）</li>
+<li>反向代理（比如anyproxy，node-http-proxy）</li>
+<li>编辑器Atom、VSCode等</li>
+</ul>
+<p>可以说目前大家能够看到的、用到的软件都有Node.js身影，当下最流行的软件写法也大都是基于Node.js的，比如PC客户端<a href=\"https://github.com/luin/medis\">luin/medis</a>采用electron打包，写法采用React+Redux。我自己一直的实践的【Node全栈】，也正是基于这种趋势而形成的。在未来，Node.js的应用场景会更加的广泛。更多参见<a href=\"https://github.com/sindresorhus/awesome-nodejs\">sindresorhus/awesome-nodejs</a>。</p>
+<h3>Web框架</h3>
+<p>演进时间线大致如下：</p>
+<ul>
+<li>2010年tj写的Express</li>
+<li>2011年Derby.js开始开发，8月5日，WalmartLabs的一位成员Eran Hammer提交了Hapi的第一次commit。Hapi原本是Postmile的一部分，并且最开始是基于Express构建的。后来它发展成自己自己的框架，</li>
+<li>2012年1月21日，专注于rest api的restify发布1.0版本，同构的meteor开始投入开发，最像rails的sails也开始了开发</li>
+<li>2013年tj开始玩generator，编写co这个generator执行器，并开始了Koa。2013 年下半年李成银开始ThinkJS，参考ThinkPHP</li>
+<li>2014年，4月9日，express发布4.0，进入4.x时代持续到今天，MEAN.js开始随着MEAN架构的提出开始开发，意图大一统，另外total.js开始，最像PHP’s Laravel 或 Python’s Django 或 <a href=\"http://ASP.NET\">ASP.NET</a> MVC的框架</li>
+<li>2015年8月22日， 下一代Web框架Koa发布1.0，可以在node 0.12下面，通过co + generator实现同步逻辑，那时候co还是基于thunkfy的，2015.10.30 ThinkJS发布了Es2015+ 特性开发的v 2.0版本</li>
+<li>2016 年 09 月，蚂蚁金服的eggjs，在 JSConf China 2016 上亮相并宣布开源</li>
+<li>2017年2月，下一代Web框架Koa发布2.0</li>
+</ul>
+<p>我们可以根据框架的特性进行分类</p>
+<table>
+<thead>
+<tr>
+<th>框架名称</th>
+<th>特性</th>
+<th>点评</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Express</td>
+<td>简单、实用，路由中间件等五脏俱全</td>
+<td>最著名的Web框架</td>
+</tr>
+<tr>
+<td>Derby.js && Meteor</td>
+<td>同构</td>
+<td>前后端都放到一起，模糊了开发便捷，看上去更简单，实际上上对开发来说要求更高</td>
+</tr>
+<tr>
+<td>Sails、Total</td>
+<td>面向其他语言，Ruby、PHP等</td>
+<td>借鉴业界优秀实现，也是Node.js成熟的一个标志</td>
+</tr>
+<tr>
+<td>MEAN.js</td>
+<td>面向架构</td>
+<td>类似于脚手架，又期望同构，结果只是蹭了热点</td>
+</tr>
+<tr>
+<td>Hapi和Restfy</td>
+<td>面向Api && 微服务</td>
+<td>移动互联网时代Api的作用被放大，故而独立分类。尤其是对于微服务开发更是利器</td>
+</tr>
+<tr>
+<td>ThinkJS</td>
+<td>面向新特性</td>
+<td>借鉴ThinkPHP，并慢慢走出自己的一条路，对于Async函数等新特性支持，无出其右</td>
+</tr>
+<tr>
+<td>Koa</td>
+<td>专注于异步流程改进</td>
+<td>下一代Web框架</td>
+</tr>
+</tbody>
+</table>
+<p>对于框架选型</p>
+<ul>
+<li>业务场景、特点，不必为了什么而什么，避免本末倒置</li>
+<li>自身团队能力、喜好，有时候技术选型决定团队氛围的，需要平衡激进与稳定</li>
+<li>出现问题的时候，有人能Cover的住，Node.js虽然8年历史，但模块完善程度良莠不齐，如果不慎踩到一个坑里，需要团队在无外力的情况能够搞定，否则会影响进度</li>
+</ul>
+<blockquote>
+<p>个人学习求新，企业架构求稳，无非喜好与场景而已</p>
+</blockquote>
+<p>我猜大家能够想到的场景，大约如下</p>
+<ul>
+<li>前端工具，比如gulp、grunt、webpack等</li>
+<li>服务器，做类似于Java、PHP的事儿</li>
+</ul>
+<p>如果只是做这些，和Java、PHP等就没啥区别了。如果再冠上更了不起的Node.js，就有点名不符实了。所以这里我稍加整理，看看和大家想的是否一样</p>
+<h3>技术栈演进</h3>
+<p>自从ES 2015（俗称ES 6）在Node.js 落地之后，整个Node.js开发都发生了翻天覆地的变化。自从0.10开始，Node.js就逐渐的加入了ES 6特性，比如0.12就可以使用generator，才导致寻求异步流程控制的tj写出了co这个著名的模块，继而诞生了Koa框架。但是在4.0之前，一直都是要通过flag才能开启generator支持，故而Koa 1.0迟迟未发布，在Node 4.0发布才发布的Koa 1.0。</p>
+<blockquote>
+<p>2015年，成熟的传统，而2016年，变革开始</p>
+</blockquote>
+<p>核心变更：es语法支持</p>
+<ul>
+<li>使用Node.js 4.x或5.x里的es6特性，如果想玩更高级的，可以使用<a href>babel</a>编译支持es7特性，或者typescript</li>
+<li>合理使用<a href=\"https://github.com/feross/standard\">standard</a>  或者 xo 代码风格约定</li>
+<li>适当的引入ES 6语法，只要Node.js SDK支持的，都可以使用</li>
+<li>需要大家重视OO（面向对象）写法的学习和使用，虽然ES 6的OO机制不健全，但这是大方向，以后会一直增强。OO对于大型软件开发更好。这其实也是我看好typescript的原因。</li>
+</ul>
+<p>对比一下变革前后的技术栈选型，希望读者能够从中感受到其中的变化</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>2015年</th>
+<th>2016年</th>
+<th>选型原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web框架</td>
+<td>express 4.x</td>
+<td>koa 1.0 && 2.0 （koa2.0刚发布不久，喜欢折腾的可以考虑）</td>
+<td>主要在流程控制上的便利，异步毕竟要时刻注意，心累</td>
+</tr>
+<tr>
+<td>数据库</td>
+<td>mongoose（mongodb）</td>
+<td>mongoose（mongodb）</td>
+<td>对mongodb和mysql支持都一样，不过是mongodb更简单，足以应付绝大部分场景</td>
+</tr>
+<tr>
+<td>异步流程控制</td>
+<td>bluebird（Promise/A+实现）</td>
+<td>bluebird（Promise/A+实现）1） Koa 1.0 使用co + generator 2） Koa 2.0 使用async函数</td>
+<td>流程控制演进路线，从promise到async函数，无论如何，promise都是基石，必要掌握的</td>
+</tr>
+<tr>
+<td>模板引擎（视图层）</td>
+<td>ejs && jade</td>
+<td>jade && nunjucks</td>
+<td>给出了2种，一种可读性好，另一种简洁高效，都是非常好的</td>
+</tr>
+<tr>
+<td>测试</td>
+<td>mocha</td>
+<td>ava</td>
+<td>mocha是Node.js里著名的测试框架，但对新特性的支持没有ava那么好，而ava基于babel安装也要大上好多</td>
+</tr>
+<tr>
+<td>调试</td>
+<td>node-inspector</td>
+<td>VSCode</td>
+<td>在Node 6和7出来之后，node-inspector支持的不是那么好，相反VSCode可视化，简单，文件多时也不卡，特别好用</td>
+</tr>
+</tbody>
+</table>
+<h3>预处理器</h3>
+<p>前端预处理可分3种</p>
+<ul>
+<li>模板引擎</li>
+<li>css预处理器</li>
+<li>js友好语言</li>
+</ul>
+<p>这些都离不开Node.js的支持，对于前端工程师来说，使用Node.js来实现这些是最方便不过的。</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>实现</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模板引擎</td>
+<td>art\\mustache\\ejs\\hbs\\jade …</td>
+<td>上百种之多，自定义默认，编译成html，继而完成更多操作</td>
+</tr>
+<tr>
+<td>css预处理器</td>
+<td>less\\sass\\scss\\rework\\postcss</td>
+<td>自定义语法规则，编译成css</td>
+</tr>
+<tr>
+<td>js友好语言</td>
+<td>coffeescript、typescript</td>
+<td>自定义语法规则、编译成js</td>
+</tr>
+</tbody>
+</table>
+<h3>跨平台</h3>
+<p>跨平台指的是PC端、移动端、Web/H5</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>实现</th>
+<th>点评</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web/H5</td>
+<td>纯前端</td>
+<td>不必解释</td>
+</tr>
+<tr>
+<td>PC客户端</td>
+<td>nw.js和electron</td>
+<td>尤其是atom和vscode编辑器最为著名，像钉钉PC端，微信客户端、微信小程序IDE等都是这样的，通过web技术来打包成PC客户端</td>
+</tr>
+<tr>
+<td>移动端</td>
+<td>cordova（旧称PhoneGap），基于cordova的ionicframework</td>
+<td>这种采用h5开发，打包成ipa或apk的应用，称为Hybrid开发（混搭），通过webview实现所谓的跨平台，应用的还是非常广泛的</td>
+</tr>
+</tbody>
+</table>
+<h3>构建工具</h3>
+<p>说起构建工具，大概会想到make、ant、rake、gradle等，其实Node.js里有更多实现</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>介绍</th>
+<th>点评</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jake</td>
+<td>基于coffeescript的大概都熟悉这个，和make、rake类似</td>
+<td>经典传统</td>
+</tr>
+<tr>
+<td>grunt</td>
+<td>dsl风格的早期著名框架</td>
+<td>配置非常麻烦</td>
+</tr>
+<tr>
+<td>gulp</td>
+<td>流式构建，不会产生中间文件，利用Stream机制，处理大文件和内存有优势，配置简单，只有懂点js就能搞定</td>
+<td>grunt的替代品</td>
+</tr>
+<tr>
+<td>webpack + npm scripts</td>
+<td>说是构建工具有点过，但二者组合勉强算吧，loader和plugin机制还是非常强大的</td>
+<td>流行而已</td>
+</tr>
+</tbody>
+</table>
+<p>构建工具都不会特别复杂，所以Node.js世界里有非常多的实现，还有人写过node版本的make呢，玩的很嗨</p>
+<h3>HTTP Proxy</h3>
+<ul>
+<li>请求代理</li>
+<li>SSR && PWA</li>
+<li>Api Proxy</li>
+</ul>
+<p>1）请求代理</p>
+<p>对于http请求复杂定制的时候，你是需要让Node.js来帮你的，比如为了兼容一个历史遗留需求，在访问某个CSS的时候必须提供HEADER才可以，如果放到静态server或cdn上是做不到的。</p>
+<p>2）SSR && PWA</p>
+<p>SSR是服务器端渲染，PWA是渐进式Web应用，都是今年最火的技术。如果大家用过，一定对Node.js不陌生。比如React、Vuejs都是Node.js实现的ssr。至于pwa的service-worker也是Node.js实现的。那么为啥不用其他语言实现呢？不是其他语言不能实现，而是使用Node.js简单、方便、学习成本低，轻松获得高性能，如果用其他语言，我至少还得装环境</p>
+<p>3）Api Proxy</p>
+<p>产品需要应变，后端不好变，一变就要设计到数据库、存储等，可能引发事故。而在前端相对更容易，前端只负责组装服务，而非真正对数据库进行变动，所以只要服务api粒度合适，在前端来处理是更好的。</p>
+<p>Api的问题</p>
+<ul>
+<li>一个页面的Api非常多</li>
+<li>跨域，Api转发</li>
+<li>Api返回的数据对前端不友好，后端讨厌（应付）前端，几种api都懒得根据ui/ue去定制，能偷懒就偷懒</li>
+<li>需求决定Api，Api不一定给的及时</li>
+</ul>
+<p>所以，在前端渲染之余，加一层Api Proxy是非常必要的。淘宝早起曾公开过一张架构图，在今天看来，依然不过时</p>
+<p><img src=\"//dn-cnode.qbox.me/Fr8cGvus0i58atULAnoe-Cv4nu5m\" alt=\"taobao.jpg\"></p>
+<ul>
+<li>左侧半边，浏览器和Node.js Server通信可以有多种协议，HTML、RESTfull、BigPipe、Comet、Socket等，已经足够我们完成任何想做的事儿了</li>
+<li>右侧半边，是Node.js实现的WebServer，Node服务分了2个部分
+<ul>
+<li>常规的Http服务，即大块部分二</li>
+<li>ModelProxy指的是根据Server端的服务，组成并转化成自身的Model层。磨蹭用于为Http服务提供更好的接口</li>
+</ul>
+</li>
+</ul>
+<p>这里的Model Proxy其实就是我们所说的Api Proxy，这张图里只是说了结果，把聚合的服务转成模型，继而为HTTP服务提供Api。</p>
+<p>下面我们再深化一下Api Proxy的概念</p>
+<p><img src=\"//dn-cnode.qbox.me/FpAZo4aPQysJyciBvzUCU9uxb-vf\" alt=\"proxy.png\"></p>
+<p>这里的Node Proxy做了2件事儿，Api和渲染辅助。</p>
+<ul>
+<li>前端的异步ajax请求，可以直接访问Api</li>
+<li>如果是直接渲染或者bigpipe等协议的，需要在服务器端组装api，然后再返回给浏览器。</li>
+</ul>
+<p>所以Api后面还有一个服务组装，在微服务架构流行的今天，这种服务组装放到Node Proxy里的好处尤其明显。既可以提高前端开发效率，又可以让后端更加专注于服务开发。甚至如果前端团队足够大，可以在前端建一个Api小组，专门做服务集成的事儿。</p>
+<h3>Api服务</h3>
+<p>说完了Proxy，我们再看看利益问题。Node.js向后端延伸，必然会触动后端开发的利益。那么Proxy层的事儿，前后端矛盾的交界处，后端不想变，前端又求变，那么长此以往，Api接口会变得越来越恶心。后端是愿意把Api的事儿叫前端的，对后端来说，只要你不动我的数据库和服务就可以。</p>
+<p>但是Node.js能不能做这部分呢？答案是能的 ，这个是和Java、PHP类似的，一般是和数据库连接到一起，处理带有业务逻辑的。目前国内大部分都是以Java、PHP等为主，所以要想吃到这部分并不容易。</p>
+<ul>
+<li>小公司，创业公司，新孵化的项目更倾向于Node.js，简单，快速，高效</li>
+<li>微服务架构下的某些服务，使用Node.js开发，是比较合理的</li>
+</ul>
+<p>国内这部分一直没有做的很好，所以Node.js在大公司还没有很好的被应用，安全问题、生态问题、历史遗留问题等，还有很多人对Node.js的误解</p>
+<ul>
+<li>单线程很脆弱，这是事实，但单线程不等于不能多核并发，而且你还有集群呢</li>
+<li>运维，其实很简单，比其他语言之简单，日志采集、监控也非常简单</li>
+<li>模块稳定性，对于Mongodb、MySQL、Redis等还是相当不错，但其他的数据库支持可能没那么好。</li>
+<li>安全问题，</li>
+</ul>
+<p>这些对于提供Api服务来说已经足够了。</p>
+<h3>其他</h3>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>说明</th>
+<th>前景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>爬虫</td>
+<td>抢了不少Python的份额，整体来说简单，实用</td>
+<td>看涨</td>
+</tr>
+<tr>
+<td>命令行工具</td>
+<td>写工具、提高效率，node+npm真是无出其右</td>
+<td>看涨</td>
+</tr>
+<tr>
+<td>微服务与RPC</td>
+<td>Node做纯后端不好做，但在新项目和微服务架构下，必有一席之地</td>
+<td>看涨</td>
+</tr>
+<tr>
+<td>微信公众号开发</td>
+<td>已经火了2年多了，尤其是付费阅读领域，还会继续火下去，gitchat就是实用Node.js做的，而且还在招人</td>
+<td>看涨</td>
+</tr>
+<tr>
+<td>反向代理</td>
+<td>Node.js可以作为nginx这样的反向代理，虽然线上我们很少这样做，但它确确实实可以这样做。比如node-http-proxy和anyproxy等，其实使用Node.js做这种请求转发是非常简单的</td>
+<td>看涨</td>
+</tr>
+</tbody>
+</table>
+<h2>更好的写法</h2>
+<h3>Async函数与Promise</h3>
+<ul>
+<li>Async函数是趋势，Chrome 52. v8 5.1已经支持Async函数(<a href=\"https://github.com/nodejs/CTC/issues/7\">https://github.com/nodejs/CTC/issues/7</a>)了，Node.js 7.0+支持还会远么？</li>
+<li>Async和Generator函数里都支持promise，所以promise是必须会的。</li>
+<li>Generator和yield异常强大，不过不会成为主流，所以学会基本用法和promise就好了，没必要所有的都必须会。</li>
+<li>co作为Generator执行器是不错的，它更好的是当做Promise 包装器，通过Generator支持yieldable，最后返回Promise，是不是有点无耻？</li>
+</ul>
+<p>我整理了一张图，更直观一些。</p>
+<p><img src=\"//dn-cnode.qbox.me/FkcPwxdGHSCHFvA2nU0ub0zYNRt4\" alt=\"async-all.png\"></p>
+<ul>
+<li>红色代表Promise，是使用最多的，无论async还是generator都可用</li>
+<li>蓝色是Generator，过度货</li>
+<li>绿色是Async函数，趋势</li>
+</ul>
+<p><strong>结论</strong>：Promise是必须会的，那你为什么不顺势而为呢？</p>
+<p><strong>推荐</strong>：使用Async函数 + Promise组合，如下图所示。</p>
+<p><img src=\"//dn-cnode.qbox.me/FhVQF1FKB6sNkoFTc3gU-SVnkGtm\" alt=\"async-suggest.png\"></p>
+<p><strong>实践</strong></p>
+<p>合理的结合Promise和Async函数是可以非常高效的，但也要因场景而异</p>
+<ul>
+<li>Promise更容易做promisefyAll（比如使用bluebird）</li>
+<li>Async函数无法批量操作</li>
+</ul>
+<p>那么，在常见的Web应用里，我们总结的实践是，dao层使用Promise比较好，而service层，使用Async/Await更好。</p>
+<p>dao层使用Promise：</p>
+<ul>
+<li>crud</li>
+<li>单一模型的方法多</li>
+<li>库自身支持Promise</li>
+</ul>
+<p>这种用promisefyAll基本几行代码就够了，一般单一模型的操作，不会特别复杂，应变的需求基本不大。</p>
+<p>而service层一般是多个Model组合操作，多模型操作就可以拆分成多个小的操作，然后使用Await来组合，看起来会更加清晰，另外对需求应变也是非常容易的。</p>
+<h3>ES.next</h3>
+<blockquote>
+<p>Node.js + ES.next = ♥</p>
+</blockquote>
+<h3>Flow && TypeScript</h3>
+<blockquote>
+<p>Type Systems Will Make You a Better JavaScript Developer</p>
+</blockquote>
+<h3>ES6模块</h3>
+<p>现在ES6自带了模块标准， 也是JS第一次支持module（之前的CommonJS、AMD、CMD都不算）， 但目前的所有Node.js版本都没有支持，目前只能用用Traceur、BabelJS， 或者TypeScript把ES6代码转化为兼容ES5版本的js代码，ES6模块新特性非常吸引人，下面简要说明。</p>
+<p>ES6 模块的目标是创建一个同时兼容CommonJS和AMD的格式，语法更加紧凑，通过编译时加载，使得编译时就能确定模块的依赖关系，效率要比 CommonJS 模块的加载方式高。而对于异步加载和配置模块加载方面，则借鉴AMD规范，其效率、灵活程度都远远好于CommonJS写法。</p>
+<ul>
+<li>语法更紧凑</li>
+<li>结构更适于静态编译（比如静态类型检查，优化等）</li>
+<li>对于循环引用支持更好</li>
+</ul>
+<p>ES6 模块标准只有2部分，它的用法更简单，你根本不需要关注实现细节:</p>
+<ul>
+<li>声明式语法：模块导入import、导出export，没有require了</li>
+<li>程式化加载API：可以配置模块是如何加载，以及按需加载。</li>
+</ul>
+<h3>多模块管理器：Lerna</h3>
+<blockquote>
+<p>A tool for managing JavaScript projects with multiple packages.</p>
+</blockquote>
+<p><a href=\"https://lernajs.io/\">https://lernajs.io/</a></p>
+<p>在设计框架的时候，经常做的事儿是进行模块拆分，继而提供插件或集成机制，这样是非常好的做法。但问题也随之而来，当你的模块模块非常多时，你该如何管理你的模块呢？</p>
+<ul>
+<li>法1：每个模块都建立独立的仓库</li>
+<li>法2：所有模块都放到1个仓库里</li>
+</ul>
+<p>法1虽然看起来干净，但模块多时，依赖安装，不同版本兼容等，会导致模块间依赖混乱，出现非常多的重复依赖，极其容易造成版本问题。这时法2就显得更加有效，对于测试，代码管理，发布等，都可以做到更好的支持。</p>
+<p>Lerna就是基于这种初衷而产生的专门用于管理Node.js多模块的工具，当然，前提是你有很多模块需要管理。</p>
+<p>你可以通过npm全局模块来安装Lerna，官方推荐直接使用Lerna 2.x版本</p>
+<h3>更好的NPM替代品：Yarn</h3>
+<p>Yarn是开源JavaScript包管理器，由于npm在扩展内部使用时遇到了大小、性能和安全等问题，Facebook携手来自Exponent、Google和Tilde的工程师，在大型JavaScript框架上打造和测试了Yarn，以便其尽可能适用于多人开发。Yarn承诺比各大流行npm包的安装更可靠，且速度更快。根据你所选的工作包的不同，Yarn可以将安装时间从数分钟减少至几秒钟。Yarn还兼容npm注册表，但包安装方法有所区别。其使用了lockfiles和一个决定性安装算法，能够为参与一个项目的所有用户维持相同的节点模块（node_modules）目录结构，有助于减少难以追踪的bug和在多台机器上复制。</p>
+<p>Yarn还致力于让安装更快速可靠，支持缓存下载的每一个包和并行操作，允许在没有互联网连接的情况下安装（如果此前有安装过的话）。此外，Yarn承诺同时兼容npm和Bower工作流，让你限制安装模块的授权许可。</p>
+<p>2016年10月份, Yarn在横空出世不到一周的时间里，github上的star数已经过万，可以看出大厂及社区的活跃度，以及解决问题的诚意，大概无出其右了！</p>
+<p>替换的原因</p>
+<ul>
+<li>在Facebook的大规模 npm 都工作的不太好</li>
+<li>npm拖慢了公司的ci工作流</li>
+<li>对一个检查所有的模块也是相当低效的</li>
+<li>npm被设计为是不确定性的，而Facebook工程师需要为他们的DevOps工作流提供一直和可依赖的系统</li>
+</ul>
+<p>与hack npm限制的做法相反，Facebook编写了Yarn</p>
+<ul>
+<li>Yarn 的本地缓存文件做的更好</li>
+<li>Yarn 可以并行它的一些操作，这加速了对新模块的安装处理</li>
+<li>Yarn 使用lockfiles，并用确定的算法来创建一个所有跨机器上都一样的文件</li>
+<li>出于安全考虑，在安装进程里，Yarn 不允许编写包的开发者去执行其他代码</li>
+</ul>
+<blockquote>
+<p>Yarn, which promises to even give developers that don’t work at Facebook’s scale a major performance boost, still uses the npm registry and is essentially a drop-in replacement for the npm client.</p>
+</blockquote>
+<p>很多人说和ruby的gem机制类似，都生成lockfile。确实是一个很不错的改进，在速度上有很大改进，配置cnpm等国内源来用，还是相当爽的。</p>
+<h3>友好语言</h3>
+<ul>
+<li>过气的Coffeescript，不多说</li>
+<li><a href=\"https://babeljs.io/\">Babel</a> - also an ES6 to ES5 transpiler that’s growing in popularity possibly because it also supports React’s JSX syntax. As of today it supports the most ES6 features at a somewhat respectable 73%.</li>
+<li><a href=\"http://www.typescriptlang.org/\">TypeScript</a> - a typed superset of JavaScript that not only compiles ES6 to ES5 (or even ES3) but also supports optional variable typing. TypeScript only supports 53% of ES6 features.</li>
+</ul>
+<h2>总结</h2>
+<blockquote>
+<p>坦诚的力量是无穷的</p>
+</blockquote>
+<p>Node.js是为异步而生的，它自己把复杂的事儿做了（高并发，低延时），交给用户的只是有点难用的Callback写法。也正是坦诚的将异步回调暴露出来，才有更好的流程控制方面的演进。也正是这些演进，让Node.js从DIRT（数据敏感实时应用）扩展到更多的应用场景，今天的Node.js已经不只是能写后端的JavaScript，已经涵盖了所有涉及到开发的各个方面，而Node全栈更是热门种的热门。</p>
+<p>直面问题才能有更好的解决方式，Node.js你值得拥有！</p>
+</div>", 
+            "title": "2017，我们来聊聊 Node.js", 
+            "last_reply_at": "2017-05-18T09:10:40.962Z", 
+            "good": true, 
+            "top": true, 
+            "reply_count": 70, 
+            "visit_count": 16971, 
+            "create_at": "2017-04-13T02:41:41.818Z", 
+            "author": {
+                "loginname": "i5ting", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/3118295?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "58e607b0ddee72813eb22323", 
+            "author_id": "4efc278525fa69ac6900000f", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p><a href=\"https://github.com/cnpm/cnpm\">cnpm cli</a> 的 install 速度已经是目前最快的一种 npm installer 了，最近 npm registry 推出了一种全新的 registry api 格式: <a href=\"https://github.com/npm/registry/blob/master/docs/responses/package-metadata.md#abbreviated-metadata-format\">Abbreviated metadata format</a>，它可以大大减少install 过程中的网络请求数据大小，于是我们也在第一时间实现到 npminstall 中了。</p>
+<p>为了更加平滑地更新过渡，我们计划使用2周时间来做beta测试，然后没什么大问题之后，将会发布正式版本的 cnpm<a href=\"/user/5\">@5</a> 。</p>
+<h2>尝鲜者来</h2>
+<p>直接通过 beta 版本可以参与测试。</p>
+<pre class=\"prettyprint language-bash\"><code>$ cnpm install cnpm@beta -g 
+</code></pre><h2>问题反馈</h2>
+<p>遇到任何问题，请直接回复到 <a href=\"https://github.com/cnpm/cnpm/pull/187\">https://github.com/cnpm/cnpm/pull/187</a> 。</p>
+<h2>回滚</h2>
+<p>一键回滚到稳定版本。</p>
+<pre class=\"prettyprint language-bash\"><code>$ cnpm install cnpm -g
+</code></pre></div>", 
+            "title": "cnpm@5 beta 测试招募", 
+            "last_reply_at": "2017-05-16T03:08:58.138Z", 
+            "good": false, 
+            "top": true, 
+            "reply_count": 106, 
+            "visit_count": 16872, 
+            "create_at": "2017-04-06T09:17:36.511Z", 
+            "author": {
+                "loginname": "fengmk2", 
+                "avatar_url": "https://avatars3.githubusercontent.com/u/156269?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591c463d3504ce1c2ac45d81", 
+            "author_id": "57346bbf32bf2c90579f529f", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>最近开发一个设备管理系统，该系统的主要功能是对设备进行地图上的信息展示，根据地理位置添加路口信息，对不同的路口添
+加数量不等的设备信息，设备发生故障并进行申请。第一次使用高德地图，小项目还在完善中…</p>
+<p><img src=\"//dn-cnode.qbox.me/FkV5nysQaU0krwgv8CZkyy1sCTMy\" alt=\"login.png\">
+<img src=\"//dn-cnode.qbox.me/FkLUXmclKU7kCZfm747UZD_7pBYG\" alt=\"地图展示.png\">
+<img src=\"//dn-cnode.qbox.me/FgN-snlHiFaVJOh1xyjIW-UUuUkG\" alt=\"数据列表.png\"></p>
+<p><a href=\"http://www.jianshu.com/p/ef7d9a0b2e3f\">项目详细介绍</a>
+<a href=\"https://github.com/dpc761218914/Device_Management\">项目地址</a></p>
+</div>", 
+            "title": "Node.js+高德地图实现简单的设备管理系统", 
+            "last_reply_at": "2017-05-21T03:35:22.167Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 6, 
+            "visit_count": 508, 
+            "create_at": "2017-05-17T12:46:53.527Z", 
+            "author": {
+                "loginname": "dpc761218914", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/16233212?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "5660f8f9d0bc14ae27939b37", 
+            "author_id": "54475fdf649ac9220757b8ed", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><blockquote>
+<p>原文链接：<a href=\"https://blog.coding.net/blog/React-server-rendering\">https://blog.coding.net/blog/React-server-rendering</a></p>
+</blockquote>
+<p>React 提供了两个方法 <code>renderToString</code> 和 <code>renderToStaticMarkup</code> 用来将组件（Virtual DOM）输出成 HTML 字符串，这是 React 服务器端渲染的基础，它移除了服务器端对于浏览器环境的依赖，所以让服务器端渲染变成了一件有吸引力的事情。</p>
+<p>服务器端渲染除了要解决对浏览器环境的依赖，还要解决两个问题：</p>
+<ul>
+<li>前后端可以共享代码</li>
+<li>前后端路由可以统一处理</li>
+</ul>
+<p>React 生态提供了很多选择方案，这里我们选用 <a href=\"http://rackt.org/redux/docs/introduction/index.html\">Redux</a> 和 <a href=\"https://github.com/rackt/react-router\">react-router</a> 来做说明。</p>
+<h2>Redux</h2>
+<p><a href=\"http://rackt.org/redux/docs/introduction/index.html\">Redux</a> 提供了一套类似 Flux 的单向数据流，整个应用只维护一个 Store，以及面向函数式的特性让它对服务器端渲染支持很友好。</p>
+<h3>2 分钟了解 Redux 是如何运作的</h3>
+<p>关于 Store：</p>
+<ul>
+<li>整个应用只有一个唯一的 Store</li>
+<li>Store 对应的状态树（State），由调用一个 reducer 函数（root reducer）生成</li>
+<li>状态树上的每个字段都可以进一步由不同的 reducer 函数生成</li>
+<li>Store 包含了几个方法比如 <code>dispatch</code>, <code>getState</code> 来处理数据流</li>
+<li>Store 的状态树只能由 <code>dispatch(action)</code> 来触发更改</li>
+</ul>
+<p>Redux 的数据流：</p>
+<ul>
+<li>action 是一个包含 <code>{ type, payload }</code> 的对象</li>
+<li>reducer 函数通过 <code>store.dispatch(action)</code> 触发</li>
+<li>reducer 函数接受 <code>(state, action)</code> 两个参数，返回一个新的 state</li>
+<li>reducer 函数判断 <code>action.type</code> 然后处理对应的 <code>action.payload</code> 数据来更新状态树</li>
+</ul>
+<p>所以对于整个应用来说，一个 Store 就对应一个 UI 快照，服务器端渲染就简化成了在服务器端初始化 Store，将 Store 传入应用的根组件，针对根组件调用 <code>renderToString</code> 就将整个应用输出成包含了初始化数据的 HTML。</p>
+<h2>react-router</h2>
+<p><a href=\"https://github.com/rackt/react-router\">react-router</a> 通过一种声明式的方式匹配不同路由决定在页面上展示不同的组件，并且通过 props 将路由信息传递给组件使用，所以只要路由变更，props 就会变化，触发组件 re-render。</p>
+<p>假设有一个很简单的应用，只有两个页面，一个列表页 <code>/list</code> 和一个详情页 <code>/item/:id</code>，点击列表上的条目进入详情页。</p>
+<p>可以这样定义路由，<code>./routes.js</code></p>
+<pre class=\"prettyprint language-javascript\"><code>import React from 'react';
+import { Route } from 'react-router';
+import { List, Item } from './components';
+
+// 无状态（stateless）组件，一个简单的容器，react-router 会根据 route
+// 规则匹配到的组件作为 `props.children` 传入
+const Container = (props) => {
+  return (
+    <div>{props.children}</div>
+  );
+};
+
+// route 规则：
+// - `/list` 显示 `List` 组件
+// - `/item/:id` 显示 `Item` 组件
+const routes = (
+  <Route path="/" component={Container} >
+    <Route path="list" component={List} />
+    <Route path="item/:id" component={Item} />
+  </Route>
+);
+
+export default routes;
+</code></pre><p>从这里开始，我们通过这个非常简单的应用来解释实现服务器端渲染前后端涉及的一些细节问题。</p>
+<h2>Reducer</h2>
+<p>Store 是由 reducer 产生的，所以 reducer 实际上反映了 Store 的状态树结构</p>
+<p><code>./reducers/index.js</code></p>
+<pre class=\"prettyprint language-javascript\"><code>import listReducer from './list';
+import itemReducer from './item';
+
+export default function rootReducer(state = {}, action) {
+  return {
+    list: listReducer(state.list, action),
+	item: itemReducer(state.item, action)
+  };
+}
+</code></pre><p><code>rootReducer</code> 的 <code>state</code> 参数就是整个 Store 的状态树，状态树下的每个字段对应也可以有自己的
+reducer，所以这里引入了 <code>listReducer</code> 和 <code>itemReducer</code>，可以看到这两个 reducer
+的 state 参数就只是整个状态树上对应的 <code>list</code> 和 <code>item</code> 字段。</p>
+<p>具体到 <code>./reducers/list.js</code></p>
+<pre class=\"prettyprint language-javascript\"><code>const initialState = [];
+
+export default function listReducer(state = initialState, action) {
+  switch(action.type) {
+  case 'FETCH_LIST_SUCCESS': return [...action.payload];
+  default: return state;
+  }
+}
+</code></pre><p>list 就是一个包含 items 的简单数组，可能类似这种结构：<code>[{ id: 0, name: 'first item'}, {id: 1, name: 'second item'}]</code>，从 <code>'FETCH_LIST_SUCCESS'</code> 的 <code>action.payload</code> 获得。</p>
+<p>然后是 <code>./reducers/item.js</code>，处理获取到的 item 数据</p>
+<pre class=\"prettyprint language-javascript\"><code>const initialState = {};
+
+export default function listReducer(state = initialState, action) {
+  switch(action.type) {
+  case 'FETCH_ITEM_SUCCESS': return [...action.payload];
+  default: return state;
+  }
+}
+</code></pre><h2>Action</h2>
+<p>对应的应该要有两个 action 来获取 list 和 item，触发 reducer 更改 Store，这里我们定义 <code>fetchList</code> 和 <code>fetchItem</code> 两个 action。</p>
+<p><code>./actions/index.js</code></p>
+<pre class=\"prettyprint language-javascript\"><code>import fetch from 'isomorphic-fetch';
+
+export function fetchList() {
+  return (dispatch) => {
+    return fetch('/api/list')
+		.then(res => res.json())
+		.then(json => dispatch({ type: 'FETCH_LIST_SUCCESS', payload: json }));
+  }
+}
+
+export function fetchItem(id) {
+  return (dispatch) => {
+    if (!id) return Promise.resolve();
+    return fetch(`/api/item/${id}`)
+		.then(res => res.json())
+		.then(json => dispatch({ type: 'FETCH_ITEM_SUCCESS', payload: json }));
+  }
+}
+</code></pre><p><a href=\"https://github.com/matthew-andrews/isomorphic-fetch\">isomorphic-fetch</a> 是一个前后端通用的 Ajax 实现，前后端要共享代码这点很重要。</p>
+<p>另外因为涉及到异步请求，这里的 action 用到了 thunk，也就是函数，redux 通过 <code>thunk-middleware</code> 来处理这类 action，把函数当作普通的 action dispatch 就好了，比如 <code>dispatch(fetchList())</code></p>
+<h2>Store</h2>
+<p>我们用一个独立的 <code>./store.js</code>，配置（比如 Apply Middleware）生成 Store</p>
+<pre class=\"prettyprint language-javascript\"><code>import { createStore } from 'redux';
+import rootReducer from './reducers';
+
+// Apply middleware here
+// ...
+
+export default function configureStore(initialState) {
+  const store = createStore(rootReducer, initialState);
+  return store;
+}
+</code></pre><h2>react-redux</h2>
+<p>接下来实现 <code><List></code>，<code><Item></code> 组件，然后把 redux 和 react 组件关联起来，具体细节参见 <a href=\"https://github.com/rackt/react-redux\">react-redux</a></p>
+<p><code>./app.js</code></p>
+<pre class=\"prettyprint language-javascript\"><code>import React from 'react';
+import { render } from 'react-dom';
+import { Router } from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+import { Provider } from 'react-redux';
+import routes from './routes';
+import configureStore from './store';
+
+// `__INITIAL_STATE__` 来自服务器端渲染，下一部分细说
+const initialState = window.__INITIAL_STATE__;
+const store = configureStore(initialState);
+const Root = (props) => {
+  return (
+    <div>
+      <Provider store={store}>
+        <Router history={createBrowserHistory()}>
+          {routes}
+        </Router>
+      </Provider>
+    </div>
+  );
+}
+
+render(<Root />, document.getElementById('root'));
+</code></pre><p>至此，客户端部分结束。</p>
+<h2>Server Rendering</h2>
+<p>接下来的服务器端就比较简单了，获取数据可以调用 action，routes 在服务器端的处理参考 <a href=\"https://github.com/rackt/react-router/blob/master/docs/guides/advanced/ServerRendering.md\">react-router server rendering</a>，在服务器端用一个 <code>match</code> 方法将拿到的 request url 匹配到我们之前定义的 routes，解析成和客户端一致的 props 对象传递给组件。</p>
+<p><code>./server.js</code></p>
+<pre class=\"prettyprint language-javascript\"><code>import express from 'express';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { RoutingContext, match } from 'react-router';
+import { Provider } from 'react-redux';
+import routes from './routes';
+import configureStore from './store';
+
+const app = express();
+
+function renderFullPage(html, initialState) {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+    </head>
+    <body>
+      <div id="root">
+        <div>
+          ${html}
+        </div>
+      </div>
+      <script>
+        window.__INITIAL_STATE__ = ${JSON.stringify(initialState)};
+      </script>
+      <script src="/static/bundle.js"></script>
+    </body>
+    </html>
+  `;
+}
+
+app.use((req, res) => {
+  match({ routes, location: req.url }, (err, redirectLocation, renderProps) => {
+    if (err) {
+      res.status(500).end(`Internal Server Error ${err}`);
+    } else if (redirectLocation) {
+      res.redirect(redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
+      const store = configureStore();
+      const state = store.getState();
+
+      Promise.all([
+        store.dispatch(fetchList()),
+        store.dispatch(fetchItem(renderProps.params.id))
+	  ])
+      .then(() => {
+        const html = renderToString(
+          <Provider store={store}>
+            <RoutingContext {...renderProps} />
+          </Provider>
+        );
+        res.end(renderFullPage(html, store.getState()));
+      });
+    } else {
+      res.status(404).end('Not found');
+    }
+  });
+});
+</code></pre><p>服务器端渲染部分可以直接通过共用客户端 <code>store.dispatch(action)</code> 来统一获取 Store 数据。另外注意 <code>renderFullPage</code> 生成的页面 HTML 在 React 组件 mount 的部分(<code><div id="root"></code>)，前后端的 HTML 结构应该是一致的。然后要把 <code>store</code> 的状态树写入一个全局变量（<code>__INITIAL_STATE__</code>），这样客户端初始化 render 的时候能够校验服务器生成的 HTML 结构，并且同步到初始化状态，然后整个页面被客户端接管。</p>
+<h3>最后关于页面内链接跳转如何处理？</h3>
+<p>react-router 提供了一个 <code><Link></code> 组件用来替代 <code><a></code> 标签，它负责管理浏览器 history，从而不是每次点击链接都去请求服务器，然后可以通过绑定 <code>onClick</code> 事件来作其他处理。</p>
+<p>比如在 <code>/list</code> 页面，对于每一个 item 都会用 <code><Link></code> 绑定一个 route url：<code>/item/:id</code>，并且绑定 <code>onClick</code> 去触发 <code>dispatch(fetchItem(id))</code> 获取数据，显示详情页内容。</p>
+<h2>更多参考</h2>
+<ul>
+<li><a href=\"http://isomorphic.net/\">Universal (Isomorphic)</a></li>
+<li><a href=\"https://github.com/caljrimmer/isomorphic-redux-app\">isomorphic-redux-app</a></li>
+</ul>
+<p>Happy Coding,
+<a href=\"https://coding.net\">Coding.net</a></p>
+</div>", 
+            "title": "玩转 React 服务器端渲染", 
+            "last_reply_at": "2017-05-21T01:09:22.081Z", 
+            "good": true, 
+            "top": false, 
+            "reply_count": 21, 
+            "visit_count": 25548, 
+            "create_at": "2015-12-04T02:22:49.618Z", 
+            "author": {
+                "loginname": "zengliqi", 
+                "avatar_url": "https://avatars.githubusercontent.com/u/9347370?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "592065829e32cc84569a717f", 
+            "author_id": "59145d403504ce1c2ac45af3", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>最近花了很多时间选择ORM
+主要体验了sequelize和bookshelfjs，感觉bookshelfjs更好，理由如下：</p>
+<h3>sequelize的文档很晦涩</h3>
+<p>直接看的官网原版文档，晦涩的意思是，新手跟着文档的说明走一遍常常得到错误的结果。我是遇到好几次很莫名的结果，没有时间看源代码，所以就放弃了！</p>
+<h3>bookshelfjs文档更好理解</h3>
+<p>boookshelfjs的文档名单明快多了，至少跟着文档走，都可以走出正确的结果，看看国外用户的活跃度也很高。</p>
+<h3>bookshelfjs基于的knexjs的migration很好用</h3>
+<p>核心还是文档好和活跃度吧，另外感觉ORM对提升效率很重要的，所以分享一下，给正在选择ORM的同学一些启发。有更好的推荐或者意见请留言，O(∩_∩)O~~</p>
+</div>", 
+            "title": "关于nodejs生态的ORM选择", 
+            "last_reply_at": "2017-05-21T00:23:59.946Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 2, 
+            "visit_count": 90, 
+            "create_at": "2017-05-20T15:49:22.442Z", 
+            "author": {
+                "loginname": "nihaoit", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/4597527?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591d8866ba8670562a40f296", 
+            "author_id": "56430dff0fb76caf5bf095fb", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>这篇文章找了一个具体的算法，比较C++/node/python 的性能，并对结果给出解释。最后部分介绍了使用 C/C++ 技术提升node 性能的一个技术框架。</p>
+<p>过去有一道经典的面试题，内容如下：一个台阶总共有N级，如果一次可以跳3级，也可以跳5级,求总共有多少种跳法。假设现在算 N = 123 时，计算总共多少种跳法。下面用代码给出具体实现</p>
+<p>C++ 实现</p>
+<pre class=\"prettyprint language-cpp\"><code>#include "stdafx.h"
+/*
+  Name: 
+  Copyright: 
+  Author: 
+  Date: 
+  Description: 跳台阶问题（递归）
+题目：一个台阶总共有n级，如果一次可以跳3级，也可以跳5级,求总共有多少跳法
+*/
+using namespace std;
+// 总共台阶数目
+int n_;
+// 工作数组
+int *x_ = NULL;
+// 记录总体数目
+int v_ = 0;
+void cfun(int t){
+  int sum = 0;
+  for(int i = 1; i < t; ++i)
+    sum += x_[i];
+  if(sum >= n_){
+    if(sum == n_){
+      ++v_;
+    }else
+      return;
+  }else{
+    for(int i = 1;i <= 2; ++i){
+      if(1 == i)
+        x_[t] = 3;
+      else
+        x_[t] = 5;
+      cfun(t+1);
+    }
+  }
+}
+
+int _tmain(int argc, _TCHAR* argv[]) {
+  cout<<"N=";
+  cin>>n_;
+  DWORD bef = timeGetTime();
+  x_ = new int[n_+1];
+  cfun(1);
+  printf("花费时间 %d\\n", timeGetTime() - bef);
+  cout<<v_<<"种"<<endl;
+  //del x_;
+  system("pause");
+  return 0;
+}
+</code></pre><p>Js 实现，可优化</p>
+<pre class=\"prettyprint language-javascript\"><code>'use strict';
+var N = 123;
+var x_ = new Array(N + 1);
+var v_ = 0;
+
+function cfun(t){
+  var sum = 0;
+  var i;
+  for(i = 1; i < t; ++i){
+    sum += x_[i];
+  }
+  if(sum >= N){
+    if(sum == N){
+      ++v_;
+  }else
+    return;
+  }else{
+    for(i = 1; i <= 2; ++i){
+      if(1 == i)
+        x_[t] = 3;
+      else
+        x_[t] = 5;
+      cfun(t + 1);
+    }
+  }
+}
+
+var bec = new Date().getTime();
+cfun(1);
+console.log('花费时间(毫秒) ' + ((new Date()).getTime() - bec));
+console.log(v_ + '种');
+</code></pre><p>Js 实现，不可优化</p>
+<pre class=\"prettyprint language-javascript\"><code>'use strict';
+var N = 123;
+var x_ = new Array(N + 1);
+var v_ = 0;
+
+function cfun(t){
+  let sum = 0;
+  var i;
+  for(i = 1; i < t; ++i){
+    sum += x_[i];
+  }
+  if(sum >= N){
+    if(sum == N){
+      ++v_;
+  }else
+    return;
+  }else{
+    for(i = 1; i <= 2; ++i){
+      if(1 == i)
+        x_[t] = 3;
+      else
+        x_[t] = 5;
+      cfun(t + 1);
+    }
+  }
+}
+
+var bec = new Date().getTime();
+cfun(1);
+console.log('花费时间(毫秒) ' + ((new Date()).getTime() - bec));
+console.log(v_ + '种');
+</code></pre><p>Python 实现</p>
+<pre class=\"prettyprint language-python\"><code># encoding: utf-8
+from random import  *
+from  time  import  *
+
+bef = int(time()*1000)
+N = 123
+x_ = [0 for i in range(N + 1)]
+v_ = 0
+
+def cfun(t):
+  global x_
+  global v_
+  sum = 0
+  i = 1
+  while i < t:
+    sum = sum + x_[i]
+    i += 1
+  if sum >= N:
+    if sum == N:
+      v_ += 1
+    else:
+      return
+  else:
+    i = 1
+    while i <= 2:
+      if i == 1:
+        x_[t] = 3
+      else:
+        x_[t] = 5
+      cfun(t + 1)
+      i += 1
+  return
+
+cfun(1)
+print(u'花费时间 ' + str(int(time()*1000) - bef))
+print(v_)
+</code></pre><p>N取 123，测试结果是
+<img src=\"http://admin.waketu.com/QQ%E6%88%AA%E5%9B%BE20170518190029.jpg\" alt=\"测试结果\">
+上面的这个图真实的记载了 N=123 时的运行时间，毫无疑问，C++ 代码最快，效率上秒杀脚本语言。Js 代码在开启优化和优化失败的时候，性能相差10倍。开启优化后，执行速度大概是 C++ 的五分之一。测试中，python 使用的是 2.7，最慢。</p>
+<p>这次对比中，Python 的性能最差，这是在没有使用任何优化技术的情况下得出的。Python有一个超集 Cython ，可以将py源码编译成C 库，它支持确定类型，这种语法的扩展经过编译之后，其实就是静态语言编译为相应平台机器码的效率，性能已与C相当。</p>
+<p>最有趣的是Js代码部分，使用如下命令 <code>node --trace-opt --trace-deopt --prof</code> 分别运行这两个文件，会发现一个可以优化，一个无法优化，信息如下</p>
+<pre class=\"prettyprint\"><code> node --trace-opt --trace-deopt --prof jump.js
+[marking 000002CBBBB6C4B9 <JS Function cfun (SharedFunctionInfo 0000029FB77F59C9)> for optimized recompi
+lation, reason: hot and stable, ICs with typeinfo: 14/14 (100%), generic ICs: 0/14 (0%)]
+[compiling method 000002CBBBB6C4B9 <JS Function cfun (SharedFunctionInfo 0000029FB77F59C9)> using Cranks
+haft]
+[optimizing 000002CBBBB6C4B9 <JS Function cfun (SharedFunctionInfo 0000029FB77F59C9)> - took 0.165, 0.28
+1, 0.138 ms]
+[completed optimizing 000002CBBBB6C4B9 <JS Function cfun (SharedFunctionInfo 0000029FB77F59C9)>]
+</code></pre><pre class=\"prettyprint\"><code> node --trace-opt --trace-deopt --prof jump-no-opt.js
+[marking 00000116B516C5E1 <JS Function cfun (SharedFunctionInfo 0000018DB6E759E9)> for optimized recompilation, reason: hot and stabl
+e, ICs with typeinfo: 14/14 (100%), generic ICs: 0/14 (0%)]
+[compiling method 00000116B516C5E1 <JS Function cfun (SharedFunctionInfo 0000018DB6E759E9)> using Crankshaft]
+[disabled optimization for 0000018DB6E759E9 <SharedFunctionInfo cfun>, reason: Unsupported let compound assignment]
+</code></pre><p>V8 使用一个叫 Crankshaft 的编译优化器处理代码，两份文件差别仅在于一处 let 关键字的使用。正是这一处let，导致后面的那个源码无法被优化。</p>
+<p>从原理上看，typescript 是 js 的一个超集，但与cython是python超集不同，typescript 是把代码编译为js 给 V8 执行，而不是翻译成c编译成机器码。typescript 支持静态定义类型，因此理论上使用静态类型的typescript模块也可以翻译成 c 然后调用 c 编译器编译成.node。但是这样做必要性没有python 强，因为V8优化之后，代码执行速度已经比较接近 c++了。所以这里需要注意的是，不要因为某些关键字的使用，让自己的代码无法被优化。</p>
+<p>node 适合I/O密集型的场景，我们所有的代码运行在main线程，因此它特别不适合计算量稍大，或者处理大块数据，尤其伴随Buffer和String 的转换的场景，频繁的GC会极大的拖慢系统，计算型任务也会阻塞主线程，使得CPU飚的很高，但任务吞吐量上不去。</p>
+<p>c++ 代码操作内存,拷贝大块数据不存在GC的过程；多线程利用多核，可以解决主线程被计算型函数的阻塞的风险。因此可以考虑给 node 做一个多线程扩展，在 js 代码里创建并管理线程，将复杂任务委托给线程执行。因为操作系统存在线程执行的亲和性，node 主线程占用一个核心，可以考虑把其他核作为一个 IO 资源来用。<a href=\"https://www.npmjs.com/package/node-threadobject\">node-threadobject</a>是这样一个模块。</p>
+<p>本文系原创，转载请注明出处～</p>
+</div>", 
+            "title": "介绍一次 c/python/node的性能对比", 
+            "last_reply_at": "2017-05-20T20:17:14.154Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 11, 
+            "visit_count": 495, 
+            "create_at": "2017-05-18T11:41:26.423Z", 
+            "author": {
+                "loginname": "classfellow", 
+                "avatar_url": "https://avatars3.githubusercontent.com/u/7146748?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "5899dc995dfbcdfa083b403f", 
+            "author_id": "54009f5ccd66f2eb37190485", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p><a href=\"http://code.visualstudio.com/updates/v1_9\">http://code.visualstudio.com/updates/v1_9</a></p>
+<p>举例2个点</p>
+<ul>
+<li>Single file debugging - Debug without a configuration file to enable quick debugging of single files.</li>
+<li>Expanded Node.js debugging configurations - Easily debug Mocha tests, gulp tasks and even Yeoman generators.</li>
+</ul>
+<p>真是爽死。。。</p>
+</div>", 
+            "title": "vscode 1.9会把你感动哭", 
+            "last_reply_at": "2017-05-20T17:21:16.528Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 103, 
+            "visit_count": 8421, 
+            "create_at": "2017-02-07T14:41:29.142Z", 
+            "author": {
+                "loginname": "i5ting", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/3118295?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "5640b80d3a6aa72c5e0030b6", 
+            "author_id": "51cfccdd73c638f3708c58d8", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><blockquote>
+<p>阅读本文前，期待您对promise和ES6(ECMA2015)有所了解，会更容易理解。
+本文以体验为主，不会深入说明，结尾有详细的文章引用。</p>
+</blockquote>
+<h2>第一个例子</h2>
+<p>Async/Await应该是目前最简单的异步方案了，首先来看个例子。</p>
+<p>这里我们要实现一个暂停功能，输入N毫秒，则停顿N毫秒后才继续往下执行。</p>
+<pre class=\"prettyprint language-js\"><code>var sleep = function (time) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            resolve();
+        }, time);
+    })
+};
+
+var start = async function () {
+    // 在这里使用起来就像同步代码那样直观
+    console.log('start');
+    await sleep(3000);
+    console.log('end');
+};
+
+start();
+</code></pre><p>控制台先输出<code>start</code>，稍等<code>3秒</code>后，输出了<code>end</code>。</p>
+<h2>基本规则</h2>
+<ol>
+<li>
+<p>async 表示<code>这是一个async函数</code>，<code>await只能用在这个函数里面</code>。</p>
+</li>
+<li>
+<p>await 表示在这里<code>等待promise返回结果</code>了，再继续执行。</p>
+</li>
+<li>
+<p>await 后面跟着的<code>应该是一个promise对象</code>（当然，其他返回值也没关系，只是会立即执行，不过那样就没有意义了…）</p>
+</li>
+</ol>
+<h2>获得返回值</h2>
+<p>await等待的虽然是promise对象，但不必写<code>.then(..)</code>，直接可以得到返回值。</p>
+<pre class=\"prettyprint language-js\"><code>var sleep = function (time) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            // 返回 ‘ok’
+            resolve('ok');
+        }, time);
+    })
+};
+
+var start = async function () {
+    let result = await sleep(3000);
+    console.log(result); // 收到 ‘ok’
+};
+</code></pre><h2>捕捉错误</h2>
+<p>既然<code>.then(..)</code>不用写了，那么<code>.catch(..)</code>也不用写，可以直接用标准的<code>try catch</code>语法捕捉错误。</p>
+<pre class=\"prettyprint language-js\"><code>var sleep = function (time) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(function () {
+            // 模拟出错了，返回 ‘error’
+            reject('error');
+        }, time);
+    })
+};
+
+var start = async function () {
+    try {
+        console.log('start');
+        await sleep(3000); // 这里得到了一个返回错误
+        
+        // 所以以下代码不会被执行了
+        console.log('end');
+    } catch (err) {
+        console.log(err); // 这里捕捉到错误 `error`
+    }
+};
+</code></pre><h2>循环多个await</h2>
+<p>await看起来就像是同步代码，所以可以理所当然的写在<code>for</code>循环里，不必担心以往需要<code>闭包</code>才能解决的问题。</p>
+<pre class=\"prettyprint language-js\"><code>..省略以上代码
+
+var start = async function () {
+    for (var i = 1; i <= 10; i++) {
+        console.log(`当前是第${i}次等待..`);
+        await sleep(1000);
+    }
+};
+</code></pre><p>值得注意的是，<code>await</code>必须在<code>async函数的上下文中</code>的。</p>
+<pre class=\"prettyprint language-js\"><code>..省略以上代码
+
+let 一到十 = [1,2,3,4,5,6,7,8,9,10];
+
+// 错误示范
+一到十.forEach(function (v) {
+    console.log(`当前是第${v}次等待..`);
+    await sleep(1000); // 错误!! await只能在async函数中运行
+});
+
+// 正确示范
+for(var v of 一到十) {
+    console.log(`当前是第${v}次等待..`);
+    await sleep(1000); // 正确, for循环的上下文还在async函数中
+}
+</code></pre><h2>第二个例子</h2>
+<p>这个例子是一个小应用，根据电影文件名，自动下载对应的海报。</p>
+<p><img src=\"https://raw.github.com/think2011/ES7-Async-Await-Demo/master/app-demo.gif\" alt></p>
+<p>直接贴出代码，就不说明了。</p>
+<pre class=\"prettyprint language-js\"><code>import fs from 'fs';
+import path from 'path';
+import request from 'request';
+
+var movieDir = __dirname + '/movies',
+    exts     = ['.mkv', '.avi', '.mp4', '.rm', '.rmvb', '.wmv'];
+
+// 读取文件列表
+var readFiles = function () {
+    return new Promise(function (resolve, reject) {
+        fs.readdir(movieDir, function (err, files) {
+            resolve(files.filter((v) => exts.includes(path.parse(v).ext)));
+        });
+    });
+};
+
+// 获取海报
+var getPoster = function (movieName) {
+    let url = `https://api.douban.com/v2/movie/search?q=${encodeURI(movieName)}`;
+
+    return new Promise(function (resolve, reject) {
+        request({url: url, json: true}, function (error, response, body) {
+            if (error) return reject(error);
+
+            resolve(body.subjects[0].images.large);
+        })
+    });
+};
+
+// 保存海报
+var savePoster = function (movieName, url) {
+    request.get(url).pipe(fs.createWriteStream(path.join(movieDir, movieName + '.jpg')));
+};
+
+
+(async () => {
+    let files = await readFiles();
+
+    // await只能使用在原生语法
+    for (var file of files) {
+        let name = path.parse(file).name;
+
+        console.log(`正在获取【${name}】的海报`);
+        savePoster(name, await getPoster(name));
+    }
+
+    console.log('=== 获取海报完成 ===');
+})();
+</code></pre><h2>其他信息</h2>
+<p>微软的Edge浏览器已经率先支持了async/await语法，相信不久之后chrome等浏览器、node.js也会跟进的，超期待！~(≧▽≦)/~</p>
+<h2>一些资料和工具</h2>
+<ul>
+<li><a href=\"https://github.com/think2011/ES7-Async-Await-Demo\">文中讲到的例子的源代码 https://github.com/think2011/ES7-Async-Await-Demo</a></li>
+<li><a href=\"https://babeljs.io/repl/\">方便的在线babel运行环境 https://babeljs.io/repl/</a></li>
+<li><a href=\"http://es6.ruanyifeng.com/#docs/async\">很详细的异步编程教程 http://es6.ruanyifeng.com/#docs/async</a></li>
+<li><a href=\"http://liubin.github.io/promises-book/#introduction\">很详细的promise小书 http://liubin.github.io/promises-book/#introduction</a></li>
+</ul>
+<blockquote>
+<p>本文同时发布在 <a href=\"http://think2011.github.io/2015/11/09/ES7-Async-Await/\">think2011的博客</a> 2015-11-09 22:42</p>
+</blockquote>
+</div>", 
+            "title": "体验异步的终极解决方案-ES7的Async/Await", 
+            "last_reply_at": "2017-05-20T15:48:02.464Z", 
+            "good": true, 
+            "top": false, 
+            "reply_count": 66, 
+            "visit_count": 49953, 
+            "create_at": "2015-11-09T15:13:17.738Z", 
+            "author": {
+                "loginname": "think2011", 
+                "avatar_url": "https://avatars2.githubusercontent.com/u/3961388?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "58aeb6a17872ea0864fee036", 
+            "author_id": "5889de28171f3bc843f601eb", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>话不多说，直接上gif图
+<img src=\"//dn-cnode.qbox.me/FtAt-d8QFVyumboGXmVu4ck1QMPo\" alt=\"show2.gif\"></p>
+</div>", 
+            "title": "强推vscode插件background", 
+            "last_reply_at": "2017-05-20T15:23:06.936Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 8, 
+            "visit_count": 820, 
+            "create_at": "2017-02-23T10:17:05.589Z", 
+            "author": {
+                "loginname": "allenliu6", 
+                "avatar_url": "https://avatars3.githubusercontent.com/u/17840824?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "54afa85cce87bace2444ce44", 
+            "author_id": "4f50e82198766f5a610bbaff", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>nodejs导出Excel, Excel模板引擎</p>
+<p>通过Excel模板导出Excel
+npm install ejsexcel
+安装nodejs之后,执行test目录下面的test.bat</p>
+<p>auto: Sail 黄智勇
+QQ: 151263555
+QQ群: 470988427
+email: <a href=\"mailto:151263555@qq.com\">151263555@qq.com</a>
+<a href=\"https://github.com/sail-sail/ejsExcel\">https://github.com/sail-sail/ejsExcel</a>
+<a href=\"http://git.oschina.net/ccteams/ejsExcel\">http://git.oschina.net/ccteams/ejsExcel</a></p>
+<p>模板:
+<img src=\"//dn-cnode.qbox.me/Frs_RuLXJxYQgYoIUhGJJ1zspCJE\" alt=\"1.png\"></p>
+<p>加数据渲染之后:
+<img src=\"//dn-cnode.qbox.me/FnRDa5Zyjg-dI7ykCNR0T8SorWyC\" alt=\"2.png\"></p>
+<p>捐赠鼓励支持此项目:
+<img src=\"//dn-cnode.qbox.me/FucPKV4XWewhakoqTSngU3AsaP0Z\" alt=\"捐赠鼓励支持此项目\"></p>
+</div>", 
+            "title": "nodejs报表Excel模板引擎", 
+            "last_reply_at": "2017-05-20T15:06:32.992Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 57, 
+            "visit_count": 15405, 
+            "create_at": "2015-01-09T10:07:24.883Z", 
+            "author": {
+                "loginname": "151263", 
+                "avatar_url": "//gravatar.com/avatar/595ec965d51c7e3c6a7d1e8eb177dd8d?size=48"
+            }
+        }, 
+        {
+            "id": "59205516ba8670562a40f304", 
+            "author_id": "58f2d502c749f63d48fe951e", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>最近在用js处理文本文件，文本文件大约有4W行。使用的是fs.readline的逐行读取。在async方法中异步读取几个这种文件。
+但是在调试时每次都会出现backtrace: timeout after 10000ms而不进断点，而且也不能打印全部文件内容。
+但是在终端里运行时又能正常打印。
+是不是visual studio code搞的鬼？！要怎么修理
+以下是我部分的代码：
+<img src=\"//dn-cnode.qbox.me/FoLk_5ICL6PF7ko8iMaePKqn4-Y8\" alt=\"屏幕快照 2017-05-20 下午10.40.54.png\"></p>
+</div>", 
+            "title": "visual studio code backtrace: timeout after 10000ms", 
+            "last_reply_at": "2017-05-20T14:39:18.468Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 0, 
+            "visit_count": 55, 
+            "create_at": "2017-05-20T14:39:18.468Z", 
+            "author": {
+                "loginname": "electrmc", 
+                "avatar_url": "https://avatars2.githubusercontent.com/u/5005172?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "592048923504ce1c2ac45e80", 
+            "author_id": "54009f5ccd66f2eb37190485", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><h1>520，VueConf，我们应该给一个男人点赞</h1>
+<p>2件事儿</p>
+<ul>
+<li>1）给一个男人点赞，那个人不是狼叔</li>
+<li>2）VueConf上狼叔的ppt</li>
+</ul>
+<h2>给一个男人点赞</h2>
+<p>对于举办一个会议有多么麻烦，我是深有体会的，曾经一个人组织和饿了么北研中心的大前端名企互访，从沟通，话题，讲师，安排，海报、易拉宝，吃喝，文案都是我自己一手主持的。那种辛苦是心累，但想想能够给更多人带来快乐，是可以忍的。我想裕波组织vue大会也是这样的，从钟恒那里了解到，整个vue大会裕波是不赚钱，纯是为了社区做事儿，如果说他能够获得点什么，我想大概只有干实事的名声吧！</p>
+<p>开场之前，据说有几个从广州来的人，不满意会场安排，找了各种借口退票了。这让裕波很火大，尽心尽力的做事儿，不被承认才是最让人伤心的吧，姑且不评论会议内容如何，但就这份热忱，就值得我们为他点赞。</p>
+<blockquote>
+<p>520，vueconf，我们应该给裕波点赞</p>
+</blockquote>
+<p>在开场的时候，裕波是激动的，当时我太累趴在桌上想休息一会，我听到他哽咽着致开场辞，对于vue大会真是一票难求，所以有很多站票，大家热情都很高，但是这种票价也就够在北航这种会场的，他也想弄的更好，我想我是能够理解他的。做成一件事儿事情真的不容易，若干年前我就特别喜好舒婷的《献给我的同代人》，我想把它送给裕波，棒棒哒！我们都支持你！</p>
+<pre class=\"prettyprint\"><code>他们在天上
+愿为一颗星
+他们在地上
+愿为一盏灯
+不怕显得多么渺小
+只要尽其可能
+
+唯因不被承认
+才格外勇敢真诚
+即使像眼泪一样跌碎
+敏感的大地
+处处仍有
+持久而悠远的回声
+
+为开拓心灵的处女 地
+走入禁区，也许——
+就在那里牺牲
+留下歪歪斜斜的脚印
+给后来者
+签署通行证
+
+1980.4
+</code></pre><h2>VueConf上狼叔的ppt</h2>
+<p><img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.001.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.002.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.003.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.004.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.005.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.006.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.007.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.008.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.009.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.010.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.011.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.012.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.013.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.014.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.015.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.016.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.017.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.018.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.019.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.020.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.021.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.022.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.023.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.024.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.025.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.026.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.027.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.028.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.029.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.030.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.031.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.032.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.033.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.034.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.035.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.036.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.037.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.038.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.039.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.040.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.041.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.042.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.043.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.044.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.045.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.046.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.047.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.048.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.049.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.050.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.051.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.052.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.053.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.054.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.055.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.056.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.057.jpeg\" alt>
+<img src=\"https://github.com/i5ting/vueconf-ppt/raw/master/Vue%20SSR%E5%92%8CAPI%20Proxy%E5%AE%9E%E8%B7%B5.058.jpeg\" alt></p>
+</div>", 
+            "title": "vue大会分享的ppt", 
+            "last_reply_at": "2017-05-20T14:10:57.060Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 2, 
+            "visit_count": 187, 
+            "create_at": "2017-05-20T13:45:54.849Z", 
+            "author": {
+                "loginname": "i5ting", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/3118295?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591eb1493504ce1c2ac45e51", 
+            "author_id": "505c1b9910ccdf8077066b73", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><h2>现有route实现</h2>
+<p>现有的koajs下的route是其实就是middleware。</p>
+<p>每一次的route.verb(xxx, fn);其实就相当于挂载了一个koa的中间件。</p>
+<p>理解这一点，那么它的问题出来了：</p>
+<h3>一是搜索路径过长</h3>
+<p>为什么这么说呢？因为每一次路由都是一次顺序查找的过程。</p>
+<p>用过程简单说明就是：</p>
+<p>我分别注册了三个路由，A, B, C</p>
+<p>然后我这个时候来了个请求是B，</p>
+<p>那么，它会先经过A, 然后再到B。</p>
+<p>特别是，这个时候来了一个路由D，那么，它的查找路径是：
+A => B => C 好了，发现没有，进入404处理。</p>
+<p>这样一来，如果路由链非常长的话，在最后的路由那么将是一场漫长的查找路径。</p>
+<h3>二是配置繁琐</h3>
+<p>每一项你都要写对应的路由配置。</p>
+<p>意味着功能有多少，路由就有多少。</p>
+<h3>三是路由维护困难</h3>
+<p>随着路由越来越多，如果你不熟悉项目的话，再或者路由写得很乱的话（事实上，这种情况非常容易发生）</p>
+<p>你想快速定位一个路由，你还需要一个一个去找。</p>
+<h2>思考</h2>
+<p>针对这些，我们能不能做一些优化措施呢？</p>
+<p>这也是我在思考的，所以就有了我写的koa-route-tree</p>
+<h2>核心思想</h2>
+<h3>1. 路径即路由</h3>
+<p>如果有这么一个请求：GET /app/list</p>
+<p>那么这个请求对应的处理函数就应该是：./controllers/app.js中的list函数。</p>
+<h3>2. 路径也是参数</h3>
+<p>如果有这么一个请求：GET /app/1</p>
+<p>那么，app就是路由，1就是参数</p>
+<p>对应的，就会找到controllers/app.js中的index方法，并把1作为第一个参数传入。</p>
+<h2>直观明了</h2>
+<p>看到上面，或许你就已经能大概理解我写的这个路由模式。</p>
+<p>它的本质就是一个对象树依次向下查找的过程。</p>
+<p>这也是我为什么路由名称中有一个tree的原因。</p>
+<p>大家明白了么？</p>
+<p>好，我再加几句。</p>
+<h2>关于restful模式</h2>
+<p>比如：GET /users/20/profile</p>
+<p>就相当于调用的/controllers/users.js中的profile方法，并把20作为第一个参数传入。</p>
+<p>等价于：/users/profile/20</p>
+<h2>关于VERB说明</h2>
+<p>除了GET请求，其他所有的正常请求都应该小写http method + 首字母大写的功能名。</p>
+<p>比如：PUT /users/20/profile</p>
+<p>就相当于调用了/controllers/users.js中的putProfile方法，并把20作为第一个参数传入。</p>
+<h2>最后</h2>
+<p>简单自我介绍一下，目前就职于猿辅导公司，公司前端业务一直用的node.js。koa-route-tree目前一直稳定运行在线上生成环境。</p>
+<p>完了。更多信息请移步到：<a href=\"https://github.com/yss/koa-route-tree\">https://github.com/yss/koa-route-tree</a></p>
+</div>", 
+            "title": "你真的理解koa/express的路由机制么？", 
+            "last_reply_at": "2017-05-20T14:06:48.091Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 5, 
+            "visit_count": 206, 
+            "create_at": "2017-05-19T08:48:09.366Z", 
+            "author": {
+                "loginname": "yansong", 
+                "avatar_url": "//gravatar.com/avatar/af347b601228fd0016b8cd8cb7c9d48c?size=48"
+            }
+        }, 
+        {
+            "id": "591f27acba8670562a40f2e7", 
+            "author_id": "586df811df04f6ab76081db0", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>用cheerio+superagent写爬虫好像也不赖，有人了解用node写爬虫吗？和python相比之下有有什么优缺点呢？</p>
+</div>", 
+            "title": "关于node写爬虫", 
+            "last_reply_at": "2017-05-20T14:06:23.616Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 9, 
+            "visit_count": 196, 
+            "create_at": "2017-05-19T17:13:16.584Z", 
+            "author": {
+                "loginname": "rebornchris", 
+                "avatar_url": "https://avatars2.githubusercontent.com/u/13329178?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "581b2502e90cfbec054d763f", 
+            "author_id": "57df88ff7d8293463a01e70b", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><h1>都说用Nodejs来生成验证码效率很低下，但有时候你仍然需要用node来生成验证码</h1>
+<h2>注：此技术现在已经拆分成独立模块了</h2>
+<h3>安装方法为npm install gd-bmp，参考gd-bmp模块下的demo</h3>
+<p><img src=\"//dn-cnode.qbox.me/FhpoxAGx3MEB_WcVbzkYlHaAD6f8\" alt=\"百度搜索.jpg\">
+点开百度搜索结果的第一条，找到三个模块：
+1.node-canvas
+2.node-gyp
+3.ccap
+看描述，这些无一例外需要安装其它支持库（C或C++编写，平台兼容性极差）
+<strong>我个人认为一切需要安装额外支持库的模块都是耍流氓！</strong>
+搜索结果比较多的是CCAP, 而ccap的介绍：
+<a href=\"https://cnodejs.org/topic/50f90d8edf9e9fcc58a5ee0b\">https://cnodejs.org/topic/50f90d8edf9e9fcc58a5ee0b</a>
+在提到性能时，是这样写的：
+在2cpu的linux 64位服务器上生成验证码速度可以达到1200次/秒，测试生成的图片是BMP的，jpeg的图片验证码生成速度大约在600次/秒。
+也<strong>仅仅达到1200次/秒</strong></p>
+<p><strong>为什么需要完全用js来实现图形模块？在node本身没有提供图形库的情况下，只有完全用js编写的图形库能做到在任何平台上运行的效果一致，实测，我的模块可以在openwrt路由器上完美运行！</strong>
+我测试了另外一款全js实现的验证码生成模块（图形操作很有限，没有画点、线等一些基本功能，甚至颜色设置也很差）
+captchapng
+<strong>在我的电脑上测试</strong>：（node版本4.4.4，32位CPU双核2.0G主频）
+按照所给的demo，生成的是80x30的验证码，900张/秒
+而我的生成的是100x40的验证码，可以达到<strong>2400张/秒</strong>
+<img src=\"//dn-cnode.qbox.me/FmxlVb-GgPlEGKMN0SCSU6mE0apf\" alt=\"captchapng测试.jpg\">
+<strong>在openwrt路由器上测试</strong>：（只有完全用js编写的模块可以在路由器上运行！ccap之类的是绝对无法运行的）
+同样的代码
+captchapng是7张/秒
+我的模块是7张/秒
+路由器的型号是TP-WR841N V10，硬改内存64M，CPU超频到850M，node版本4.4.5
+之所以说ccap之类的是绝对无法运行，因为路由器的node运行环境非常极端！内存极少，CPU指令与电脑是完全不同的
+所以依赖C/C++支持的模块是无法运行的！甚至代码量过大的js程序也无法运行，例如使用npm安装express，由于express需要依赖太多其它模块，导致npm的运行没有足够的内存</p>
+<p><strong>以下是我对captchapng的测试代码  png.js</strong></p>
+<pre class=\"prettyprint language-js\"><code>var http = require('http');
+var captchapng = require('captchapng');
+//captchapng版本 0.0.1
+
+function getImg(){
+	    var p = new captchapng(80,30,parseInt(Math.random()*9000+1000)); // width,height,numeric captcha
+        p.color(0, 0, 0, 0);  // First color: background (red, green, blue, alpha)
+        p.color(80, 80, 80, 255); // Second color: paint (red, green, blue, alpha)
+
+        var img = p.getBase64();
+        var imgbase64 = new Buffer(img,'base64');
+		return imgbase64;
+}
+
+var start = new Date().getTime();
+var i = 0;
+while((new Date().getTime() - start) < 1000){
+    var img = getImg();
+    i++;
+}
+console.log("1秒钟生成：" + i);
+
+
+http.createServer(function (request, response) {
+        response.writeHead(200, {
+            'Content-Type': 'image/png'
+        });
+		var img = getImg();
+        response.end(img);
+
+}).listen(8080);
+
+console.log('Web server started.');
+</code></pre><h3>好了，现在来介绍一下我花了两天时间编写的“图形库”</h3>
+<p>字符图形测试：
+<img src=\"//dn-cnode.qbox.me/FsmPagKHWmJN8UoWwJD6Nh-ab0uU\" alt=\"字符测试.jpg\">
+验证码：
+<img src=\"//dn-cnode.qbox.me/FqRA25HwmCbhQXY4ZGVTjZvJLh9D\" alt=\"验证码1.jpg\">   <img src=\"//dn-cnode.qbox.me/Fs9K8Ck-jMGDQjQiBebkEhlcJpJH\" alt=\"验证码2.jpg\">
+匆忙做出来的，样子很难看，图片大小和百度云网盘登录的验证码是一样的，都是100x40
+其实我编写的是一个只能操作24位bmp图片的“图形库”，大家都知道bmp图片是没有压缩的，
+所以文件大小必定会比jpg，gif，png之类的大，但是，对于验证码仅仅100x40的图片来说仅仅11.7K，微不足道！
+况且，用Js来编写操作这些格式的程序太过复杂。
+实测在我的电脑上可以达到2400张/秒的优秀成绩（我的电脑是32位 CPU双核2G主频）
+假如去除上面验证码中的正弦曲线，可以达到6500张/秒！
+假如同时去除字符和正弦曲线只保留画圆、画线、画空心矩形和实心矩形，可以达到<strong>12000张/秒！</strong></p>
+<h3>安装</h3>
+<p>npm install zengming
+我个人的测试模块，呵呵，有时间再把这个"图形库"拆分出来</p>
+<p><strong>现在已经拆分成独立模块了：</strong>
+npm install gd-bmp
+github地址： <a href=\"https://github.com/zengming00/node-gd-bmp\">https://github.com/zengming00/node-gd-bmp</a>
+使用与zengming模块基本一致，只是将字体和类绑在了一起，细微的差异请参考gd-bmp模块下的demo</p>
+<h3>测试代码 bmp.js</h3>
+<pre class=\"prettyprint language-js\"><code>var http = require('http');
+var fs = require('fs');
+var z = require('zengming');
+var BMP24 = z.BMP24;
+var font = z.Font;
+
+/*
+ 用PCtoLCD2002取字模
+ 行列式扫描，正向取模（高位在前）
+ */
+var cnfonts = {//自定义字模
+    w : 16,
+    h : 16,
+    fonts: "中国",
+    data : [
+        [0x01,0x01,0x01,0x01,0x3F,0x21,0x21,0x21,0x21,0x21,0x3F,0x21,0x01,0x01,0x01,0x01,0x00,0x00,0x00,0x00,0xF8,0x08,0x08,0x08,0x08,0x08,0xF8,0x08,0x00,0x00,0x00,0x00],/*"中",0*/
+        [0x00,0x7F,0x40,0x40,0x5F,0x41,0x41,0x4F,0x41,0x41,0x41,0x5F,0x40,0x40,0x7F,0x40,0x00,0xFC,0x04,0x04,0xF4,0x04,0x04,0xE4,0x04,0x44,0x24,0xF4,0x04,0x04,0xFC,0x04],/*"国",1*/
+        ]
+};
+
+function makeImg2() {
+    var img = new BMP24(300,140);
+    img.drawString('helloworld', 20,10, font.font8x16, 0xff0000);
+    img.drawString('helloworld', 20,25, font.font12x24, 0x00ff00);
+    img.drawString('helloworld', 20,50, font.font16x32, 0x0000ff);
+    img.drawString('中国', 20,85, cnfonts, 0xffffff);
+    return img;
+}
+
+function makeCapcha() {
+    var img = new BMP24(100, 40);
+    img.drawCircle(11, 11, 10, z.rand(0, 0xffffff));
+    img.drawRect(0, 0, img.w-1, img.h-1, z.rand(0, 0xffffff));
+    img.fillRect(53, 15, 88, 35, z.rand(0, 0xffffff));
+    img.drawLine(50, 6, 3, 60, z.rand(0, 0xffffff));
+    //return img;
+
+    //画曲线
+    var w=img.w/2;
+    var h=img.h;
+    var color = z.rand(0, 0xffffff);
+    var y1=z.rand(-5,5); //Y轴位置调整
+    var w2=z.rand(10,15); //数值越小频率越高
+    var h3=z.rand(4,6); //数值越小幅度越大
+    var bl = z.rand(1,5);
+    for(var i=-w; i<w; i+=0.1) {
+        var y = Math.floor(h/h3*Math.sin(i/w2)+h/2+y1);
+        var x = Math.floor(i+w);
+        for(var j=0; j<bl; j++){
+            img.drawPoint(x, y+j, color);
+        }
+    }
+
+    var p = "ABCDEFGHIJKLMNOPQRSTUVWXYZ3456789";
+    var str = '';
+    for(var i=0; i<5; i++){
+        str += p.charAt(Math.random() * p.length |0);
+    }
+
+    var fonts = [font.font8x16, font.font12x24, font.font16x32];
+    var x = 15, y=8;
+    for(var i=0; i<str.length; i++){
+        var f = fonts[Math.random() * fonts.length |0];
+        y = 8 + z.rand(-10, 10);
+        img.drawChar(str[i], x, y, f, z.rand(0, 0xffffff));
+        x += f.w + z.rand(2, 8);
+    }
+    return img;
+}
+var start = new Date().getTime();
+var i = 0;
+while((new Date().getTime() - start) < 1000){
+    //var img = makeCapcha();
+    var img = makeImg2();
+    i++;
+}
+console.log("1秒钟生成：" + i);
+
+http.createServer(function (req,res) {
+    console.time("bmp24");
+    var img = makeCapcha();
+    console.timeEnd("bmp24");
+
+    res.setHeader('Content-Type', 'image/bmp');
+    res.end(img.getFileData());
+
+}).listen(8080);
+
+</code></pre><h2>以上的代码使用了此模块的所有功能，特别说明一下，字符的显示借鉴了单片机的字符显示程序
+所以字符是完全可以自定义的，你可以用取字模的软件自己生成字库，
+我用的是PCtoLCD2002取字模， 行列式扫描，正向取模（高位在前）
+程序已经内置了三种规格的字体，仅包含大小写字母和数字</h2>
+<h3>API，非常简洁、强大、优雅、风骚、时尚、一看就懂，前无古人后无来者</h3>
+<p>//获得对象的两种方式：
+//构造函数，创建指定宽高的图片对象(初始化为一张全黑的图片)
+new BMP24(w, h)</p>
+<p>从文件加载bmp
+注意！必需确保文件是24位bmp
+参数：文件路径 ， cb(err, BMP24)
+BMP24.loadFromFile(filename, cb)</p>
+<hr>
+<p>//获取BMP整个文件数据
+obj.getFileData()</p>
+<p>//画点, RGB颜色值（例如红色0xff0000）
+obj.drawPoint(x, y, rgb)</p>
+<p>//画线
+obj.drawLine(x1, y1, x2, y2, rgb)</p>
+<p>//画矩形&实心矩形
+obj.drawRect(x1, y1, x2, y2, rgb)
+obj.fillRect(x1, y1, x2, y2, rgb)</p>
+<p>//画圆
+obj.drawCircle(x, y, r, rgb)</p>
+<p>//画字符&字符串，font参数为字库，color为RGB颜色值（例如红色0xff0000）
+obj.drawChar(ch, x, y, font, color)
+obj.drawString(str, x, y, font, color)</p>
+<h1>license</h1>
+<h2>MIT,  导致一个人低学历的原因有很多，学历不代表一个人的全部，面试几家全是以学历不够为由打下来，我决定不授权此项技术给任何看学历的公司使用</h2>
+<hr>
+</div>", 
+            "title": "彻底跨平台，Node.js高效生成验证码，我自己用纯js实现了一个图形模块", 
+            "last_reply_at": "2017-05-20T13:55:47.725Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 55, 
+            "visit_count": 47289, 
+            "create_at": "2016-11-03T11:52:34.473Z", 
+            "author": {
+                "loginname": "zengming00", 
+                "avatar_url": "https://avatars1.githubusercontent.com/u/5255081?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591e9446d371b6372a8afb8a", 
+            "author_id": "57fdefac487e1e4578afb443", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>node是单线程非阻塞，多数问题都会交给异步来处理，但是如果</p>
+<pre class=\"prettyprint\"><code>for (var i = 0; i < 1000; i++) {
+  //http 请求
+}
+</code></pre><p>同时发起1000个异步请求，如何使用线程池来很好的控制，而不至于崩掉？</p>
+</div>", 
+            "title": "node如何处理同时发起上百个请求？", 
+            "last_reply_at": "2017-05-20T13:54:51.339Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 5, 
+            "visit_count": 294, 
+            "create_at": "2017-05-19T06:44:22.759Z", 
+            "author": {
+                "loginname": "rongchanghai", 
+                "avatar_url": "https://avatars1.githubusercontent.com/u/21261210?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "59181f45d371b6372a8af9a4", 
+            "author_id": "53253dba8943ad101201b8b8", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>以前直接cron脚本定时调用地址运行-结束。但最近有些复杂功能需要处理，不能再简单调用一下就完事了。翻了一下前面发的贴子，主要集中在两个模块上。node-schedule 与  later  想问一下一般大家用什么，两者感觉有什么不好用的坑。
+有一个特别小需求
+A 任务 -->开始执行 --执行完成<br>
+如果A任务还在执行中，定时时间到了定时需要等上一次执行完成，才能再继续。</p>
+</div>", 
+            "title": "关于定时模块,除了内容中2个还有什么推荐吗。", 
+            "last_reply_at": "2017-05-20T10:01:13.107Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 1, 
+            "visit_count": 347, 
+            "create_at": "2017-05-14T09:11:33.332Z", 
+            "author": {
+                "loginname": "gotolnc", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/3211945?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "59200e0aba8670562a40f2ff", 
+            "author_id": "57ff53e527a1d99178a98e23", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>因为底部信息是可以后台配置的，所以不能写死，自然就想到做一个中间件去将底部信息从数据库里面获取出来，不然，前台每个请求的路由我都要写一个查询方法感觉没必要，那么我应该怎么做呢，node小白，望指教</p>
+</div>", 
+            "title": "请教一个问题，用express4+，前台比如说有个底部信息，前台每个页面都会有，怎么去做一个中间件把底部信息取出来", 
+            "last_reply_at": "2017-05-20T09:52:33.042Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 1, 
+            "visit_count": 71, 
+            "create_at": "2017-05-20T09:36:10.746Z", 
+            "author": {
+                "loginname": "chtic123", 
+                "avatar_url": "https://avatars2.githubusercontent.com/u/15922086?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591e6809ba8670562a40f2b9", 
+            "author_id": "5124922fdf9e9fcc588efb2f", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>node 作为一个中间层向后台发http请求拿数据，每个页面都会有用户登录信息，登录信息提供一个接口，怎么样在每个页面都加上这个登录信息接口</p>
+</div>", 
+            "title": "node 作为一个中间层向后台发http请求拿数据，每个页面都会有用户登录信息，登录信息提供一个接口", 
+            "last_reply_at": "2017-05-20T08:52:46.984Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 3, 
+            "visit_count": 154, 
+            "create_at": "2017-05-19T03:35:37.640Z", 
+            "author": {
+                "loginname": "allce231", 
+                "avatar_url": "//gravatar.com/avatar/e86b0eaaf7c6aeb101d81321c846553e?size=48"
+            }
+        }, 
+        {
+            "id": "591918cd9e32cc84569a6f78", 
+            "author_id": "561352cc29ea4bf176befe1a", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>想实现本地检测文件的改动, 将改动的文件列表显示出来,然后执行一条命令将改动的文件上传到ftp上.</p>
+<p>执行上传命令后, 所有文件作为下一次文件改动的源文件, .</p>
+<p>需要哪些模块?</p>
+<p>新手求推荐.</p>
+</div>", 
+            "title": "新手, 想咨询下node下ftp上传问题", 
+            "last_reply_at": "2017-05-20T03:20:44.831Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 1, 
+            "visit_count": 186, 
+            "create_at": "2017-05-15T02:56:13.429Z", 
+            "author": {
+                "loginname": "nikoohp", 
+                "avatar_url": "https://avatars1.githubusercontent.com/u/4496368?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591fb0273504ce1c2ac45e73", 
+            "author_id": "4efc278625fa69ac690001ad", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>http what ?
+<img src=\"//dn-cnode.qbox.me/FsZuxoUqvOGGEtMbpXPqsyCIwaeD\" alt=\"http_图解.jpg\"></p>
+<p>http1.x
+<img src=\"//dn-cnode.qbox.me/FtHc962oVtwkv8XeNPcQ0Hn1SgyH\" alt=\"http_1.x_图解.jpg\">
+http 2.x
+<img src=\"//dn-cnode.qbox.me/FsZuxoUqvOGGEtMbpXPqsyCIwaeD\" alt=\"http2_图解.jpg\"></p>
+<p>最后这个https 好像不是她画的
+<img src=\"//dn-cnode.qbox.me/FreyH7dHQ5a25gbhu_kBotXYws4I\" alt=\"https.jpg\"></p>
+</div>", 
+            "title": "http 图解 - @kosamari", 
+            "last_reply_at": "2017-05-20T02:55:35.934Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 0, 
+            "visit_count": 113, 
+            "create_at": "2017-05-20T02:55:35.934Z", 
+            "author": {
+                "loginname": "fish", 
+                "avatar_url": "//gravatar.com/avatar/d24fc5b1c6b84dae95dd23ba1c7ebbcb?size=48"
+            }
+        }, 
+        {
+            "id": "591a8f2f3504ce1c2ac45cbc", 
+            "author_id": "54abd420ce87bace2444cb36", 
+            "tab": "job", 
+            "content": "<div class=\"markdown-text\"><p>公司简介：
+新三板上市公司子公司， 在空气好的国家西海岸新区青岛市黄岛区， 注意是空气好！在北方找个冬暖夏凉空气好的地方你试试～
+工作时间 8：30 ～ 17:30</p>
+<p>任职要求：
+1、1 年以上 nodejs 开发经验，负责物联网服务器程序开发；
+2、熟练掌握 Javascript 以及 nodejs 基本概念，了解 ES6 规范，熟悉 Node.js 标准库的使用，能完成相应的扩展开发；
+3、具备 Express、koa 等后端框架的使用经验，使用过 Angular、Vue、React 等至少一个前端框架；熟悉 Github、SVN 的使用；熟悉 Linux 操作系统；了解 mysql、redis、mongodb。
+4、优秀的逻辑思维能力和沟通表达能力，严谨负责的工作态度，优秀的学习能力，愿意写技术文档并进行技术分享。</p>
+<p>加分项:
+熟悉 Python/C/PHP ; 英语熟练。
+对射频有所了解。
+对区块链有所了解。</p>
+<p>待遇：
+薪资第一年 8k–12k ，定期团建、年度旅游，各种国家规定法定假日
+五险一金、双休，每年一次员工体检；有机会享受公司成长收益。</p>
+<p>发送简历至邮箱 <a href=\"mailto:klsun@hidrun.com\">klsun@hidrun.com</a> 或 <a href=\"mailto:service@hidrun.com\">service@hidrun.com</a></p>
+</div>", 
+            "title": "[青岛黄岛] Nodejs 软件工程师招聘-物联网服务器开发", 
+            "last_reply_at": "2017-05-20T02:14:35.121Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 11, 
+            "visit_count": 589, 
+            "create_at": "2017-05-16T05:33:35.657Z", 
+            "author": {
+                "loginname": "oatmeal3000", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/3891176?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "5533dd6e9138f09b629674fd", 
+            "author_id": "54edd6faf08635a279d18cff", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p><strong>csrf是什么</strong>
+csrf（Cross-site request forgery)跨站请求伪造, 具体谷歌度娘.</p>
+<p><strong>防止csrf攻击简单思路:</strong>
+在服务器上生成一个token, web端发起的请求都带上token这个参数, 请求中的token与服务端的token不一致,则抛出错误.</p>
+<p><strong>涉及主要模块代码</strong>
+layout.html, jquery-ujs.js, app.js, csurf模块</p>
+<p><strong>1 服务端如何生产成token, token存储的位置</strong>
+<em>app.js</em></p>
+<pre class=\"prettyprint language-js\"><code>app.use(function (req, res, next) {
+  if (req.path.indexOf('/api') === -1) {
+    csurf()(req, res, next);
+    return;
+  }
+  next();
+});
+</code></pre><p>因csurlf未带入参{ cookie: true }, 故token将会保存session中(其实session不是存放token, 而是能一个secret, 通过secret可生产token且能还原token)
+csurf()(req, res, next); 该行代码被执行时, 会在为req添加一个方法csrfToken, 接下来来会用到, 如下所示.
+<em>app.js</em></p>
+<pre class=\"prettyprint language-js\"><code>app.use(function (req, res, next) {
+  res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
+  next();
+});
+</code></pre><p>req.csrfToken() ; 该行代码被执行,会生成一个token, 并保存session中.
+req.csrfToken()保存token的部分代码, 如下所示.</p>
+<p><em>csurf模块 index.js</em></p>
+<pre class=\"prettyprint language-js\"><code>// generate & set new secret
+if (sec === undefined) {
+  sec = tokens.secretSync()
+  setsecret(req, res, sec, cookie)
+}
+</code></pre><p><strong>2 服务端什么时候校验</strong>
+<em>app.js</em></p>
+<pre class=\"prettyprint language-js\"><code>app.use(function (req, res, next) {
+	if (req.path.indexOf('/api') === -1) {
+	csurf()(req, res, next);
+	return;
+	}
+	next();
+});
+</code></pre><p>除/api开头请求, 都会执行csurf方法, token的校验也是在该方法里, csurf方法部分代码如下所示
+<em>csurf模块 index.js</em></p>
+<pre class=\"prettyprint language-js\"><code>verifytoken(req, tokens, secret, value(req))
+</code></pre><p><strong>3 服务端校验的token, 可能来自哪里.</strong>
+web端请求中的token, 不一定只来自于所传送的参数.
+<em>csurf模块 index.js</em></p>
+<pre class=\"prettyprint language-js\"><code>function defaultValue(req) {
+  return (req.body && req.body._csrf)
+    || (req.query && req.query._csrf)
+    || (req.headers['x-csrf-token'])
+    || (req.headers['x-xsrf-token']);
+}
+</code></pre><p>因csurlf初始化时没带任何参数,  故校验的token使用使用默认的值,
+从代码上, 默认的token可能来自req.body, req.query, req.header</p>
+<p><strong>4 哪些请求不校验token.</strong>
+从app.js 的代码中可以看出, /api开头的请求是不会校验的, 但果真如此么, 如果真是这样, 那不是访问首页, 都会被拦截.
+<em>csurf模块 index.js</em></p>
+<pre class=\"prettyprint language-js\"><code>// verify the incoming token
+if (!ignoreMethod[req.method]) {
+  verifytoken(req, tokens, secret, value(req))
+}
+</code></pre><p>从代码上, 部分req.method方法是被忽略校验的, 那到底是什么mehtod呢, 具体如下所示
+<em>csurf模块 index.js</em></p>
+<pre class=\"prettyprint language-js\"><code>// ignored methods
+var ignoreMethods = options.ignoreMethods === undefined
+  ? ['GET', 'HEAD', 'OPTIONS']
+  : options.ignoreMethods
+</code></pre><p>因csurlf初始化时没带任何参数, 故使用默认的ignoreMethods, get head option会被忽略校验, 所以我们就可以很正常的访问首页</p>
+<p><strong>5 token什么时候到页面上的.</strong>
+<em>app.js</em></p>
+<pre class=\"prettyprint language-js\"><code>app.use(function (req, res, next) {
+  res.locals.csrf = req.csrfToken ? req.csrfToken() : '';
+  next();
+});
+</code></pre><p><em>layout.xml</em></p>
+<pre class=\"prettyprint language-js\"><code><meta content="_csrf" name="csrf-param">
+<meta content="<%= csrf %>" name="csrf-token">
+</code></pre><p>在页面初始化的时候, token被放在到了 meta标签后, 之后请求数据, 就可以利用这些值了.</p>
+<p><strong>6 web端token参数什么时候传到服务端.</strong>
+web端的token需要时请求时传入的, 但是现在只有meta标签有csrf-token的值, 这个token时什么时候被利用的呢
+<em>jquery.ujs.js</em></p>
+<pre class=\"prettyprint language-js\"><code>// Make sure that every Ajax request sends the CSRF token
+CSRFProtection: function (xhr) {
+  var token = $('meta[name="csrf-token"]').attr('content');
+  if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+},
+// making sure that all forms have actual up-to-date token(cached forms contain old one)
+refreshCSRFTokens: function () {
+  var csrfToken = $('meta[name=csrf-token]').attr('content');
+  var csrfParam = $('meta[name=csrf-param]').attr('content');
+  $('form input[name="' + csrfParam + '"]').val(csrfToken);
+},
+</code></pre><p><em>jquery.ujs.js</em></p>
+<pre class=\"prettyprint language-js\"><code>$.ajaxPrefilter(function (options, originalOptions, xhr) {
+  if (!options.crossDomain) {
+    rails.CSRFProtection(xhr);
+  }
+});
+</code></pre><p><em>jquery.ujs.js</em></p>
+<pre class=\"prettyprint language-js\"><code>$(function () {
+  rails.refreshCSRFTokens();
+});
+</code></pre><p>从代码中看出, 在发ajax请求的时候,会在header.X-CSRF-Token附上token值.
+在form表单请求的时候, 会添加token的值.</p>
+<p><strong>7 最后</strong>
+以上代码摘录于cnnode源码git版本号为a511357454c3352a6deb2719ca24eb4250667fff
+以上如有理解不当之处, 望提点指正.</p>
+</div>", 
+            "title": "浅谈cnode社区如何防止csrf攻击", 
+            "last_reply_at": "2017-05-20T01:24:20.720Z", 
+            "good": true, 
+            "top": false, 
+            "reply_count": 15, 
+            "visit_count": 4682, 
+            "create_at": "2015-04-19T16:53:02.841Z", 
+            "author": {
+                "loginname": "nqdy666", 
+                "avatar_url": "https://avatars1.githubusercontent.com/u/5211893?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "51fc8bd944e76d216ab64939", 
+            "author_id": "50ab99f8637ffa41554d1fa9", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>转载自：<a href=\"http://blog.csdn.net/kidx_/article/details/9709387\">http://blog.csdn.net/kidx_/article/details/9709387</a></p>
+<p>GM : GraphicsMagick for node.js
+首先得安装 GraphicsMagick 或者 ImageMagick。
+然后执行：
+$ sudo npm install gm</p>
+<p>我安装的是ImageMagick，在ubuntu系统下快速安装：
+$ sudo apt-get install imagemagick</p>
+<p>HOW TO USE
+GM 文档：<a href=\"http://aheckmann.github.io/gm/docs.html\">http://aheckmann.github.io/gm/docs.html</a>
+使用ImageMagick
+var imageMagick = gm.subClass({ imageMagick: true });
+然后就像文档中使用gm那样使用ImageMagick即可（举个例子）
+imageMagick(“img.png”).resize(300, 100).autoOrient().write(’/path’, callback);</p>
+<p>Example (nodejs + Express)</p>
+<pre class=\"prettyprint\"><code>var gm = require('gm')
+,  fs = require('fs')
+,	imageMagick = gm.subClass({ imageMagick : true });
+exports.imgUpload = function(req, res) {
+	res.header('Content-Type', 'text/plain');
+  var path = req.files.img.path;	//获取用户上传过来的文件的当前路径
+  var sz = req.files.img.size;
+  if (sz > 2*1024*1024) {
+    fs.unlink(path, function() {	//fs.unlink 删除用户上传的文件
+      res.end('1');
+    });
+  } else if (req.files.img.type.split('/')[0] != 'image') {
+    fs.unlink(path, function() {
+      res.end('2');
+    });
+  } else {
+    imageMagick(path)
+    .resize(150, 150, '!') //加('!')强行把图片缩放成对应尺寸150*150！
+    .autoOrient()
+    .write('public/images/user/'+req.files.img.name, function(err){
+      if (err) {
+        console.log(err);
+        res.end();
+      }
+      fs.unlink(path, function() {
+        return res.end('3');
+      });
+    });
+  }
+};
+</code></pre><p>上面只是index.js文件的部分核心代码
+<a href=\"http://pan.baidu.com/share/link?shareid=2913111267&uk=2552401515\">点击去下载完整Example</a></p>
+<p>示例运行截图：
+<img src=\"http://img.blog.csdn.net/20130802161424593?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQva2lkeF8=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center\" alt=\"alt example\"></p>
+<p>可以查看 public/images/user/ 里面的图片，验证你上传的图片是否被缩放了。</p>
+<p>同理可对图片进行裁切：
+gm(“img.png”).crop(width, height, x, y)</p>
+<p>详情看gm的文档http://aheckmann.github.io/gm/docs.html</p>
+</div>", 
+            "title": "Node.js 对图片进行裁切、缩放 (gm)", 
+            "last_reply_at": "2017-05-20T00:59:13.739Z", 
+            "good": true, 
+            "top": false, 
+            "reply_count": 46, 
+            "visit_count": 39585, 
+            "create_at": "2013-08-03T04:49:29.434Z", 
+            "author": {
+                "loginname": "kimady", 
+                "avatar_url": "//gravatar.com/avatar/2c63b57d3c76ccaed06fcc34ba0e8d33?size=48"
+            }
+        }, 
+        {
+            "id": "591d164dd371b6372a8afb16", 
+            "author_id": "577b5dab4e3c2a8305cc0e73", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>前几天在这儿发帖，庆祝下自己的小站boxopened.com正式上线。但是今天我在查看后台日志的时候，竟然发现了一个网站 <a href=\"http://www.yingcent.com\">www.yingcent.com</a>，竟然和我的网站一模一样，你们说我是该高兴呢，还是该悲哀呢？
+这是上次发帖的链接，<a href=\"https://cnodejs.org/topic/58f5a17ebbaf2f3f569bdf80%E3%80%82\">https://cnodejs.org/topic/58f5a17ebbaf2f3f569bdf80。</a></p>
+</div>", 
+            "title": "我的网站竟然被山寨了。。。", 
+            "last_reply_at": "2017-05-20T00:50:31.367Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 23, 
+            "visit_count": 4596, 
+            "create_at": "2017-05-18T03:34:37.216Z", 
+            "author": {
+                "loginname": "GGBond1989", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/2205526?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591e6e13ba8670562a40f2ba", 
+            "author_id": "5157d04e5dff253b376d2b91", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>按惯例先放下载地址：牛读 v2.0.0 <a href=\"http://reader.liteneo.com/\">http://reader.liteneo.com/</a> 同时支持 iOS 以及 Android，欢迎品尝</p>
+<p><strong>牛读支持回复Cnode的帖子，但是不支持创建帖子</strong>，虽然这个支持起来不难，但是我觉得创建帖子是一件很严肃的事情，应该在 PC 上去完成</p>
+<p>之前一直想着跟着 React Native 的 Release 节奏，每一两个月发一个版本，但是这次却等了四个多月，一方面是要等某些我想要的特性被支持，一些严重的八阿哥被修复，另外一个原因就是这次更新我几乎重写了绝大部分代码逻辑</p>
+<p>从用户的角度看，这次更新几乎没有大的更新，只有几处 UI 的更新，比如知乎日报详情页的视差效果以及集成了微信分享，但是对我来讲，这是一次脱胎换骨的更新</p>
+<ol>
+<li>
+<p><a href=\"https://github.com/dvajs/dva\">dva</a>, 之前的版本没有使用任何redux、mobx之类的状态管理工具，因为我觉得整个 App 的逻辑并不复杂，但是事实并非如此，里面各种 <code>ref</code> 的使用使整个流程变得异常复杂，后来经过在 redux 和 mobx 中间纠结，最后选择了抱 redux 大腿，用过 redux 的应该都知道 redux 相对繁琐的写法，所以我选择了 <code>dva</code>，一个封装了 redux + redux-saga 的状态管理库，然后就开始了漫长的重构之旅，<code>dva</code>的体验非常棒，简化了 redux 的写法，以及与 rudx-saga 的集成，现在我将绝大部分逻辑从组件里移到了<code>model</code>里，整个流程清晰多了</p>
+</li>
+<li>
+<p><a href=\"https://github.com/react-community/react-navigation\">react-navigation</a>, 在重构的过程中，RN 先是移除了 <code>NavigationExperimental</code>，接着 depreciated 了一直以来的官方推荐的导航组件<code>Navigator</code>, 转而推荐使用<code>react-navigation</code>，牛读最开始也是用的<code>Navigator</code>，后来因为<code>NavigationExperimental</code>支持原生驱动动画，性能好太多，就切到了<code>NavigationExperimental</code>，这个过程基本无痛，现在为了为以后做准备，于是切换到<code>react-navigation</code>，这真的是件很痛苦的事，一方面是使用方式完全不一样，但最主要的原因是这个库本身问题太多，在重构的过程中，我一直都在反馈问题，提交 PR，终于把他打磨的满足我的需求了（但是对于其他一些场景，他依然还有很多问题没有解决），现在牛读里<strong>所有的转场动画都是用 react-navigation 实现的</strong>，包括设置界面的旋转</p>
+</li>
+</ol>
+<p>我把 dva + react-navigation 的使用提炼了一个 <a href=\"https://github.com/nihgwu/react-native-dva-starter\">react-native-dva-starter</a>，我会持续把我认为的 dva 和 react-navigation 在 React Native 中的最佳实践加进去，有兴趣的可以关注下</p>
+<h4>目前牛读的安卓版还有两个已知的问题</h4>
+<ol>
+<li>部分文章显示不全被截断，这个是因为 React Native 的一个问题引起的</li>
+<li>设置界面选择关闭某些模块后会白屏，这个可以通过重启来解决</li>
+</ol>
+<p>主要是我手上没有安卓手机，没办法测试，再就是精力实在有限，因为完全是利用业余时间开发，这次重写耗费了我太多时间，但是我还是花费了很多时间去适配安卓版本，就是想证明 React Native 也可以做出体验很好的安卓应用，目前除了因为阿婆的专利问题 Android 的 ScrollView 不支持 overScroll，其他的效果跟 iOS 上完全一致</p>
+</div>", 
+            "title": "牛读一周年 重新起航", 
+            "last_reply_at": "2017-05-20T00:19:45.585Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 1, 
+            "visit_count": 213, 
+            "create_at": "2017-05-19T04:01:23.612Z", 
+            "author": {
+                "loginname": "nihgwu", 
+                "avatar_url": "https://avatars.githubusercontent.com/u/2595058?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "58aaefcd414c2f51644788b7", 
+            "author_id": "58a7cce4fafcf6bf5f32d7f7", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>nodejs的学习过程！大家都是怎么渐进式的学习的？期待各位大侠分享！</p>
+</div>", 
+            "title": "nodejs 学习", 
+            "last_reply_at": "2017-05-19T23:45:14.047Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 30, 
+            "visit_count": 1960, 
+            "create_at": "2017-02-20T13:31:57.279Z", 
+            "author": {
+                "loginname": "fronteason", 
+                "avatar_url": "https://avatars.githubusercontent.com/u/25839341?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "573c95b1f610cbba1dc4527d", 
+            "author_id": "56daaf5dc0fa23473d005feb", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>小弟新人一枚，在前端方面不知道是应该深入学习vue.js还是react.js呢，各位大牛们有没有什么好的建议呢？？</p>
+</div>", 
+            "title": "对vue.js和react.js的纠结", 
+            "last_reply_at": "2017-05-19T20:50:44.533Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 32, 
+            "visit_count": 9966, 
+            "create_at": "2016-05-18T16:17:53.383Z", 
+            "author": {
+                "loginname": "zhulinwei", 
+                "avatar_url": "https://avatars.githubusercontent.com/u/17670262?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "5897e9b426aaf5da084b037e", 
+            "author_id": "55f18c6888f76a8469b4351f", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><pre class=\"prettyprint\"><code>PostModel.findAsync({author:author}).populateAsync('author')
+            .then(function (posts) {
+                res.render('posts', {
+                    posts: posts
+                });
+            })
+            .catch(next);
+</code></pre><p>bluebird这个库的populate是怎么用的呢？</p>
+</div>", 
+            "title": "bluebird的populateAsync怎么使用呢？", 
+            "last_reply_at": "2017-05-19T15:07:04.108Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 3, 
+            "visit_count": 531, 
+            "create_at": "2017-02-06T03:12:52.536Z", 
+            "author": {
+                "loginname": "clm1100", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/9148460?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "58ce90d328be82df16560976", 
+            "author_id": "58ce7c2328be82df1656096e", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>先说一下背景：
+不同于大多数互联网公司，我们的软件一般不会部署在我们能够掌控的机房内，大多跟随不同的项目部署到客户的机房中。</p>
+<p>我们最近在思考，希望找到一种方案可以保护我们的源码，至少增加盗用的难度。</p>
+<p>目前的思路除了用核心模块用 C 或者 Java 写以外，还有一种方案就是使用 crypto 加密源码，运行时再解密。虽然解密后在内存中依然可以获得源码，但至少在复制分发的过程中，不能轻易的看到源码。倾向于这种方案是因为我们 JS 开发人员相对比较多。</p>
+<p>花了两天写了个模块：<a href=\"https://www.npmjs.com/package/extension-jse\">https://www.npmjs.com/package/extension-jse</a> 供大家讨论。各位看看这个方案是否可行，也许解码部分可以用 C 实现，不知道有没有必要。</p>
+</div>", 
+            "title": "关于 NodeJs 源码保护", 
+            "last_reply_at": "2017-05-19T10:47:01.528Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 17, 
+            "visit_count": 1105, 
+            "create_at": "2017-03-19T14:08:19.119Z", 
+            "author": {
+                "loginname": "somax", 
+                "avatar_url": "https://avatars3.githubusercontent.com/u/5010811?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "5865a866189fd5ad6459006c", 
+            "author_id": "5816a5e3cf18d0333412d31f", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><blockquote>
+<p>原文地址: <a href=\"http://www.jianshu.com/p/0ecd727107bb\">http://www.jianshu.com/p/0ecd727107bb</a></p>
+</blockquote>
+<h2>目录</h2>
+<ul>
+<li>前言</li>
+<li>服务端渲染好处</li>
+<li>思考</li>
+<li>原理</li>
+<li>同构方案</li>
+<li>状态管理方案</li>
+<li>路由方案</li>
+<li>静态资源处理方案</li>
+<li>动态加载方案</li>
+<li>优化方案</li>
+<li>部署方案</li>
+<li>其它</li>
+<li>结尾</li>
+</ul>
+<h2>前言</h2>
+<p>前段时间公司有一个产品需求要求使用Node.js中间层来做服务端渲染，于是翻遍了整个技术社区，没有找到一个特别合适的脚手架，作为一个有追求的前端攻城狮，决定自己去搭建一套最完美的服务端渲染开发环境，期间踩过无数的坑，前前后后差不多折腾了三周时间。</p>
+<h2>服务端渲染好处</h2>
+<ol>
+<li>SEO，让搜索引擎更容易读取页面内容</li>
+<li>首屏渲染速度更快（重点），无需等待js文件下载执行的过程</li>
+<li>更易于维护，服务端和客户端可以共享某些代码</li>
+</ol>
+<h2>思考</h2>
+<ol>
+<li>如何实现组件同构？</li>
+<li>如何保持前后端应用状态一致？</li>
+<li>如何解决前后端路由匹配问题？</li>
+<li>如何处理服务端对静态资源的依赖？</li>
+<li>如何配置两套不同的环境（开发环境和产品环境）？</li>
+<li>如何划分更合理的项目目录结构？</li>
+</ol>
+<p>由于服务端渲染配置的复杂性，大部分人望而止步，而本文的目的就在于教你如何搭建一套优雅的服务端渲染开发环境，从开发打包部署优化到上线。</p>
+<h2>原理</h2>
+<p><img src=\"http://upload-images.jianshu.io/upload_images/4145295-df8e7f9aa01f3448.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240\" alt></p>
+<p>一个服务端渲染的同构web应用架构图大致如上图所示，得力于Node.js的发展与流行，Javascript成为了一门同构语言，这意味着我们只需写一套代码，可以同时在客户端与服务端执行。</p>
+<h2>同构方案</h2>
+<p>这里我们采用React技术体系做同构，由于React本身的设计特点，它是以Virtual DOM的形式保存在内存中，这是服务端渲染的前提。</p>
+<p>对于客户端，通过调用ReactDOM.render方法把Virtual DOM转换成真实DOM最后渲染到界面。</p>
+<pre class=\"prettyprint language-js\"><code>import { render } from 'react-dom'
+import App from './App'
+
+render(<App />, document.getElementById('root'))
+</code></pre><p>对于服务端，通过调用ReactDOMServer.renderToString方法把Virtual DOM转换成HTML字符串返回给客户端，从而达到服务端渲染的目的。</p>
+<pre class=\"prettyprint language-js\"><code>import { renderToString } from 'react-dom/server'
+import App from './App'
+
+async function(ctx) {
+    await ctx.render('index', {
+        root: renderToString(<App />)
+    })
+}
+</code></pre><h2>状态管理方案</h2>
+<p>我们选择Redux来管理React组件的非私有组件状态，并配合社区中强大的中间件Devtools、Thunk、Promise等等来扩充应用。当进行服务端渲染时，创建store实例后，还必须把初始状态回传给客户端，客户端拿到初始状态后把它作为预加载状态来创建store实例，否则，客户端上生成的markup与服务端生成的markup不匹配，客户端将不得不再次加载数据，造成没必要的性能消耗。</p>
+<h4>服务端</h4>
+<pre class=\"prettyprint language-js\"><code>import { renderToString } from 'react-dom/server'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import App from './App'
+import rootReducer from './reducers'
+
+const store = createStore(rootReducer)
+
+async function(ctx) {
+    await ctx.render('index', {
+        root: renderToString(
+            <Provider store={store}>
+                <App />
+            </Provider>
+        ),
+        state: store.getState()
+    })
+}
+</code></pre><h4>HTML</h4>
+<pre class=\"prettyprint language-html\"><code><body>
+    <div id="root"><%- root %></div>
+    <script>
+        window.REDUX_STATE = <%- JSON.stringify(state) %>
+    </script>
+</body>
+</code></pre><h4>客户端</h4>
+<pre class=\"prettyprint language-js\"><code>import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import App from './App'
+import rootReducer from './reducers'
+
+const store = createStore(rootReducer, window.REDUX_STATE)
+
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>, 
+    document.getElementById('root')
+)
+</code></pre><h2>路由方案</h2>
+<p>客户端路由的好处就不必多说了，客户端可以不依赖服务端，根据hash方式或者调用history API，不同的URL渲染不同的视图，实现无缝的页面切换，用户体验极佳。但服务端渲染不同的地方在于，在渲染之前，必须根据URL正确找到相匹配的组件返回给客户端。
+React Router为服务端渲染提供了两个API：</p>
+<ul>
+<li><code>match</code> 在渲染之前根据URL匹配路由组件</li>
+<li><code>RoutingContext</code> 以同步的方式渲染路由组件</li>
+</ul>
+<h4>服务端</h4>
+<pre class=\"prettyprint language-js\"><code>import { renderToString } from 'react-dom/server'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import { match, RouterContext } from 'react-router'
+import rootReducer from './reducers'
+import routes from './routes'
+
+const store = createStore(rootReducer)
+
+async function clientRoute(ctx, next) {
+    let _renderProps
+
+    match({routes, location: ctx.url}, (error, redirectLocation, renderProps) => {
+        _renderProps = renderProps
+    })
+
+    if (_renderProps) {
+        await ctx.render('index', {
+            root: renderToString(
+                <Provider store={store}>
+                    <RouterContext {..._renderProps} />
+                </Provider>
+            ),
+            state: store.getState()
+        })
+    } else {
+        await next()
+    }
+}
+</code></pre><h4>客户端</h4>
+<pre class=\"prettyprint language-js\"><code>import { Route, IndexRoute } from 'react-router'
+import Common from './Common'
+import Home from './Home'
+import Explore from './Explore'
+import About from './About'
+
+const routes = (
+    <Route path="/" component={Common}>
+        <IndexRoute component={Home} />
+        <Route path="explore" component={Explore} />
+        <Route path="about" component={About} />
+    </Route>
+)
+
+export default routes
+</code></pre><h2>静态资源处理方案</h2>
+<p>在客户端中，我们使用了大量的ES6/7语法，jsx语法，css资源，图片资源，最终通过webpack配合各种loader打包成一个文件最后运行在浏览器环境中。但是在服务端，不支持import、jsx这种语法，并且无法识别对css、image资源后缀的模块引用，那么要怎么处理这些静态资源呢？我们需要借助相关的工具、插件来使得Node.js解析器能够加载并执行这类代码，下面分别为开发环境和产品环境配置两套不同的解决方案。</p>
+<h4>开发环境</h4>
+<ol>
+<li>首先引入babel-polyfill这个库来提供regenerator运行时和core-js来模拟全功能ES6环境。</li>
+<li>引入babel-register，这是一个require钩子，会自动对require命令所加载的js文件进行实时转码，需要注意的是，这个库只适用于开发环境。</li>
+<li>引入css-modules-require-hook，同样是钩子，只针对样式文件，由于我们采用的是CSS Modules方案，并且使用SASS来书写代码，所以需要node-sass这个前置编译器来识别扩展名为.scss的文件，当然你也可以采用LESS的方式，通过这个钩子，自动提取className哈希字符注入到服务端的React组件中。</li>
+<li>引入asset-require-hook，来识别图片资源，对小于8K的图片转换成base64字符串，大于8k的图片转换成路径引用。</li>
+</ol>
+<pre class=\"prettyprint language-js\"><code>// Provide custom regenerator runtime and core-js
+require('babel-polyfill')
+
+// Javascript required hook
+require('babel-register')({presets: ['es2015', 'react', 'stage-0']})
+
+// Css required hook
+require('css-modules-require-hook')({
+    extensions: ['.scss'],
+    preprocessCss: (data, filename) =>
+        require('node-sass').renderSync({
+            data,
+            file: filename
+        }).css,
+    camelCase: true,
+    generateScopedName: '[name]__[local]__[hash:base64:8]'
+})
+
+// Image required hook
+require('asset-require-hook')({
+    extensions: ['jpg', 'png', 'gif', 'webp'],
+    limit: 8000
+})
+</code></pre><h4>产品环境</h4>
+<p>对于产品环境，我们的做法是使用webpack分别对客户端和服务端代码进行打包。客户端代码打包这里不多说，对于服务端代码，需要指定运行环境为node，并且提供polyfill，设置__filename和__dirname为true，由于是采用CSS Modules，服务端只需获取className，而无需加载样式代码，所以要使用css-loader/locals替代css-loader加载样式文件</p>
+<pre class=\"prettyprint language-js\"><code>// webpack.config.js
+{
+    target: 'node',
+    node: {
+        __filename: true,
+        __dirname: true
+    },
+    module: {
+        loaders: [{
+            test: /\\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel',
+            query: {presets: ['es2015', 'react', 'stage-0']}
+        }, {
+            test: /\\.scss$/,
+            loaders: [
+                'css/locals?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]',
+                'sass'
+            ]
+        }, {
+            test: /\\.(jpg|png|gif|webp)$/,
+            loader: 'url?limit=8000'
+        }]
+    }
+}
+</code></pre><h2>动态加载方案</h2>
+<p>对于大型Web应用程序来说，将所有代码打包成一个文件不是一种优雅的做法，特别是对于单页面应用，用户有时候并不想得到其余路由模块的内容，加载全部模块内容，不仅增加用户等待时间，而且会增加服务器负荷。Webpack提供一个功能可以拆分模块，每一个模块称为chunk，这个功能叫做Code Splitting。你可以在你的代码库中定义分割点，调用require.ensure，实现按需加载，而对于服务端渲染，require.ensure是不存在的，因此需要判断运行环境，提供钩子函数。</p>
+<p>重构后的路由模块为</p>
+<pre class=\"prettyprint language-js\"><code>// Hook for server
+if (typeof require.ensure !== 'function') {
+    require.ensure = function(dependencies, callback) {
+        callback(require)
+    }
+}
+
+const routes = {
+    childRoutes: [{
+        path: '/',
+        component: require('./common/containers/Root').default,
+        indexRoute: {
+            getComponent(nextState, callback) {
+                require.ensure([], require => {
+                    callback(null, require('./home/containers/App').default)
+                }, 'home')
+            }
+        },
+        childRoutes: [{
+            path: 'explore',
+            getComponent(nextState, callback) {
+                require.ensure([], require => {
+                    callback(null, require('./explore/containers/App').default)
+                }, 'explore')
+            }
+        }, {
+            path: 'about',
+            getComponent(nextState, callback) {
+                require.ensure([], require => {
+                    callback(null, require('./about/containers/App').default)
+                }, 'about')
+            }
+        }]
+    }]
+}
+
+export default routes
+</code></pre><h2>优化方案</h2>
+<p>提取第三方库，命名为vendor</p>
+<pre class=\"prettyprint language-js\"><code>vendor: ['react', 'react-dom', 'redux', 'react-redux']
+</code></pre><p>所有js模块以chunkhash方式命名</p>
+<pre class=\"prettyprint language-js\"><code>output: {
+    filename: '[name].[chunkhash:8].js',
+    chunkFilename: 'chunk.[name].[chunkhash:8].js',
+}
+</code></pre><p>提取公共模块，manifest文件起过渡作用</p>
+<pre class=\"prettyprint language-js\"><code>new webpack.optimize.CommonsChunkPlugin({
+    names: ['vendor', 'manifest'],
+    filename: '[name].[chunkhash:8].js'
+})
+</code></pre><p>提取css文件，以contenthash方式命名</p>
+<pre class=\"prettyprint language-js\"><code>new ExtractTextPlugin('[name].[contenthash:8].css')
+</code></pre><p>模块排序、去重、压缩</p>
+<pre class=\"prettyprint language-js\"><code>new webpack.optimize.OccurrenceOrderPlugin(), // webpack2 已移除
+new webpack.optimize.DedupePlugin(), // webpack2 已移除
+new webpack.optimize.UglifyJsPlugin({
+    compress: {warnings: false},
+    comments: false
+})
+</code></pre><p>使用babel-plugin-transform-runtime取代babel-polyfill，可节省大量文件体积
+需要注意的是，你不能使用最新的内置实例方法，例如数组的includes方法</p>
+<pre class=\"prettyprint language-js\"><code>{
+    presets: ['es2015', 'react', 'stage-0'],
+    plugins: ['transform-runtime']
+}
+</code></pre><p>最终打包结果</p>
+<p><img src=\"http://upload-images.jianshu.io/upload_images/4145295-79f4c0bb6fd7480b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240\" alt=\"Paste_Image.png\"></p>
+<h2>部署方案</h2>
+<p>对于客户端代码，将全部的静态资源上传至CDN服务器
+对于服务端代码，则采用pm2部署，这是一个带有负载均衡功能的Node应用的进程管理器，支持监控、日志、0秒重载，并可以根据有效CPU数目以cluster的方式启动最大进程数目</p>
+<pre class=\"prettyprint language-js\"><code>pm2 start ./server.js -i 0
+</code></pre><p><img src=\"http://upload-images.jianshu.io/upload_images/4145295-741c7df64f14c997.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240\" alt=\"Paste_Image.png\"></p>
+<h2>其它</h2>
+<h4>提升开发体验</h4>
+<p>对于客户端代码，可以使用Hot Module Replacement技术，并配合koa-webpack-dev-middleware，koa-webpack-hot-middleware两个中间件，与传统的BrowserSync不同的是，它可以使我们不用通过刷新浏览器的方式，让js和css改动实时更新反馈至浏览器界面中。</p>
+<pre class=\"prettyprint language-js\"><code>app.use(convert(devMiddleware(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+})))
+app.use(convert(hotMiddleware(compiler)))
+</code></pre><p>对于服务端代码，则使用nodemon监听代码改动，来自动重启node服务器，相比supervisor，更加灵活轻量，内存占用更少，可配置性更高。</p>
+<pre class=\"prettyprint language-js\"><code>nodemon ./server.js --watch server
+</code></pre><p>对于React组件状态管理，使用Redux DevTools这个中间件，它可以跟踪每一个状态和action，监控数据流，由于采用纯函数的编程思想，还具备状态回溯的能力。需要注意的是，React组件在服务端生命周期只执行到componentWillMount，因此要把该中间件挂载到componentDidMount方法上，避免在服务端渲染而报错。</p>
+<pre class=\"prettyprint language-js\"><code>class Root extends Component {
+    constructor() {
+        super()
+        this.state = {isMounted: false}
+    }
+    componentDidMount() {
+        this.setState({isMounted: true})
+    }
+    render() {
+        const {isMounted} = this.state
+        return (
+            <div>
+                {isMounted && <DevTools/>}
+            </div>
+        )
+    }
+}
+</code></pre><h4>代码风格约束</h4>
+<p>推荐使用时下最为流行的ESLint，相比其它QA工具，拥有更多，更灵活，更容易扩展的配置，无论是对个人还是团队协作，引入代码风格检查工具，百益而无一害，建议你花个一天时间尝试一遍ESLint每一项配置，再决定需要哪些配置，舍弃哪些配置，而不是直接去使用Airbnb规范，Google规范等等。</p>
+<p>Tips: 使用fix参数可快速修复一些常见错误，在某种程度上，可以取代编辑器格式化工具</p>
+<pre class=\"prettyprint language-js\"><code>eslint test.js --fix
+</code></pre><h4>开发环境演示</h4>
+<p>Youtubee视频，自备梯子
+<a href=\"https://www.youtube.com/watch?v=h3n3-v81PqY\">https://www.youtube.com/watch?v=h3n3-v81PqY</a></p>
+<h2>结尾</h2>
+<p>时至今日，开源社区中并没有一个完美的服务端渲染解决方案，而当初搭建这个脚手架的目的就是从易用性出发，以最清晰的配置，用最流行的栈，组最合理的目录结构，给开发者带来最完美的开发体验，从开发打包部署优化到上线，一气呵成。即使你毫无经验，也可轻松入门服务端渲染开发。</p>
+<p>附上源码: <a href=\"https://github.com/chikara-chan/react-isomorphic-boilerplate\">https://github.com/chikara-chan/react-isomorphic-boilerplate</a></p>
+</div>", 
+            "title": "教你如何搭建一个超完美的React.js服务端渲染开发环境", 
+            "last_reply_at": "2017-05-19T10:05:03.389Z", 
+            "good": true, 
+            "top": false, 
+            "reply_count": 27, 
+            "visit_count": 5771, 
+            "create_at": "2016-12-30T00:20:54.356Z", 
+            "author": {
+                "loginname": "chikara-chen", 
+                "avatar_url": "https://avatars.githubusercontent.com/u/13572030?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "58351689bde2b59e06141e9f", 
+            "author_id": "504c28a2e2b845157708cb61", 
+            "tab": "job", 
+            "content": "<div class=\"markdown-text\"><p>因为经常收到各种内推咨询，所以我直接发个帖子做这事哈。</p>
+<p>需要内推腾讯的同学可以直接找我哈，在帖子下留言可以为大家介绍一下我解答一些常见的问题，如果我懂的话。</p>
+<p>这个是针对社招的内推，校招和实习的话，每年有固定的时间窗口，想参加校招的同学先关注腾讯的校招资讯再联系我。</p>
+<p>参加内推的流程：</p>
+<ol>
+<li>在 <a href=\"http://hr.tencent.com/\">http://hr.tencent.com/</a> 选择3个你想入职的岗位</li>
+<li>将想要入职的岗位（如：<code>SNG12-腾讯云web前端开发（深圳）</code>）和简历一起发到 <a href=\"mailto:alsotang@tencent.com\">alsotang@tencent.com</a> ，抄送 <a href=\"mailto:alsotang@gmail.com\">alsotang@gmail.com</a></li>
+<li>我将简历内推到对应的岗位去</li>
+</ol>
+<p>相关的入职各种事宜都可以在邮件中向我咨询。不要留言发简历，要pdf或word格式的才能录入系统。</p>
+<p>此贴长期有效。</p>
+</div>", 
+            "title": "【腾讯】各种岗位均可内推，前后端均可", 
+            "last_reply_at": "2017-05-19T09:53:54.142Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 42, 
+            "visit_count": 9861, 
+            "create_at": "2016-11-23T04:09:45.315Z", 
+            "author": {
+                "loginname": "alsotang", 
+                "avatar_url": "https://avatars2.githubusercontent.com/u/1147375?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591eb78a9e32cc84569a713b", 
+            "author_id": "5679f640a056d34607805737", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>node_modules里下载了好多模块，有一些根本没有使用怎么检测删除</p>
+</div>", 
+            "title": "有可以检测项目多余模块的软件吗？", 
+            "last_reply_at": "2017-05-19T09:41:57.226Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 2, 
+            "visit_count": 109, 
+            "create_at": "2017-05-19T09:14:50.307Z", 
+            "author": {
+                "loginname": "muzi-xiangxiang", 
+                "avatar_url": "https://avatars2.githubusercontent.com/u/16145343?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "57fcb419fdf3bd3d65118504", 
+            "author_id": "57dec5f53af3942a3aa3b855", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>最近在学习前端的各大流行框架, 主要学习了 Vue.js 和 React.js, 前段时间用 Vue.js + uikit 实现了 V2EX 的克隆版本, 最近又用 React.js + redux + bootstrap 实现了 RubyChina 的克隆版本, 两个项目都支持响应式布局. 不得不说这是学习新知识的一个有效途径. 这两个项目都比较合适学习 Vue.js 和 React.js 的朋友参考.</p>
+<h4>Vue.js + V2EX 项目</h4>
+<p>代码地址: <a href=\"https://github.com/liuzhenangel/v2ex_frontend\">https://github.com/liuzhenangel/v2ex_frontend</a></p>
+<p>Demo: <a href=\"http://v2ex.liuzhen.me\">http://v2ex.liuzhen.me</a></p>
+<p>关于这个项目的一些介绍和学习资料可以访问 <a href=\"https://github.com/liuzhenangel/v2ex_frontend\">这里</a> 查看 .</p>
+<p><img src=\"//dn-cnode.qbox.me/FruVwmWHS4uXew2B89Zb7WTPsfEi\" alt=\"v2ex.png\"></p>
+<p>这篇文章主要介绍 React.js 的相关知识.</p>
+<h4>React.js + RubyChina 项目</h4>
+<p>代码地址: <a href=\"https://github.com/liuzhenangel/react-ruby-china\">https://github.com/liuzhenangel/react-ruby-china</a></p>
+<p>Demo: <a href=\"http://ruby-china.liuzhen.me\">http://ruby-china.liuzhen.me</a></p>
+<p><img src=\"//dn-cnode.qbox.me/Fj2hG2AetciG-YOVVLJKRfXB0iI9\" alt=\"ruby-china.png\"></p>
+<h5>项目介绍</h5>
+<p>react-ruby-china 项目是一个利用 react, react-dom, react-redux, react-router, redux, es6, redux-thunk 实现的 RubyChina 社区克隆项目.</p>
+<p>这是一个前后端分离项目, 前端主要是 react, redux, es6, css 框架使用了 bootstrap. 后端利用 ruby-china 开放的 api. 支持响应式布局. 部分功能仍在持续完善中.</p>
+<h5>开发环境搭建</h5>
+<p>可以根据下方列出的官方文档里面有详细说明, 这里介绍一下 <code>create-react-app</code> 这个命令行脚手架工具. <code>npm install create-react-app -g</code> 之后执行 <code>create-react-app my-app</code>, 然后 <code>npm start</code> 就能运行了.
+关于 <code>create-react-app</code> 详情可以点击 <a href=\"https://github.com/facebookincubator/create-react-app\">这里</a> 查看.</p>
+<h5>核心技术框架</h5>
+<ul>
+<li>react</li>
+<li>react-dom</li>
+<li>react-router</li>
+<li>redux</li>
+<li>redux-thunk</li>
+<li>react-md-editor</li>
+<li>isomorphic-fetch</li>
+<li>react-paginate</li>
+<li>react-redux</li>
+<li>marked</li>
+<li>es6-promise</li>
+<li>classnames</li>
+</ul>
+<h4>学习参考资料</h4>
+<blockquote>
+<p>在学习 React 过程中, React.js 文档做的没有 Vue.js 的好, 文档中的例子各种不同语法. 对着照做不一定对, 也不方便查询, 踩过很多坑后给大家做个分享.</p>
+</blockquote>
+<p>React 中文文档(这个文档很好查询, 但是很多内容写的太简单了没讲清楚, 而且内容不全): <a href=\"https://hulufei.gitbooks.io/react-tutorial/content/index.html\">https://hulufei.gitbooks.io/react-tutorial/content/index.html</a></p>
+<p>React 官方英文文档: <a href=\"https://facebook.github.io/react/docs/getting-started.html\">https://facebook.github.io/react/docs/getting-started.html</a></p>
+<p>React 中文文档(这个文档比较差): <a href=\"http://reactjs.cn/react/docs/getting-started-zh-CN.html\">http://reactjs.cn/react/docs/getting-started-zh-CN.html</a></p>
+<p>极客学院提供的 React 中文文档: <a href=\"http://wiki.jikexueyuan.com/project/react/\">http://wiki.jikexueyuan.com/project/react/</a></p>
+<p>另一个 Reac 中文文档(这个比较全面, 但是不便于搜索): <a href=\"http://www.phperz.com/article/15/0712/140537.html\">http://www.phperz.com/article/15/0712/140537.html</a></p>
+<p>React Router 中文文档: <a href=\"https://react-guide.github.io/react-router-cn/\">https://react-guide.github.io/react-router-cn/</a></p>
+<p>RubyChina API: <a href=\"https://ruby-china.org/api\">https://ruby-china.org/api</a></p>
+<p>ReacChina 社区(这里面有很多资源): <a href=\"http://react-china.org/\">http://react-china.org/</a></p>
+<p>ES6 文档: <a href=\"http://es6.ruanyifeng.com/#docs/intro\">http://es6.ruanyifeng.com/#docs/intro</a></p>
+<p>Redux 介绍: <a href=\"http://www.alloyteam.com/2015/09/react-redux/\">http://www.alloyteam.com/2015/09/react-redux/</a></p>
+</div>", 
+            "title": "基于 React.js + redux + bootstrap 的 RubyChina 示例", 
+            "last_reply_at": "2017-05-19T09:30:20.448Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 5, 
+            "visit_count": 3707, 
+            "create_at": "2016-10-11T09:42:49.817Z", 
+            "author": {
+                "loginname": "liuzhenangel", 
+                "avatar_url": "https://avatars.githubusercontent.com/u/7440044?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "590311febbaf2f3f569be3d3", 
+            "author_id": "59006da0bbaf2f3f569be2f2", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>Vue 全家桶写的 CNode 社区，最好看的CNode社区！
+功能：首页、详情页、用户中心、消息页、发布话题
+技术栈：vue2+vuex+vue-router
+脚手架：vue-cli
+持续更新中，欢迎 fork/star。
+demo： <a href=\"https://www.ldsun.com/vue-cnode\">https://www.ldsun.com/vue-cnode</a>
+GitHub： <a href=\"https://github.com/flute/vue-cnode\">https://github.com/flute/vue-cnode</a></p>
+</div>", 
+            "title": "vue全家桶版CNode，可能是最好看的CNode", 
+            "last_reply_at": "2017-05-19T08:57:10.558Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 13, 
+            "visit_count": 1293, 
+            "create_at": "2017-04-28T09:57:18.009Z", 
+            "author": {
+                "loginname": "flute", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/5842406?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591ea447ba8670562a40f2d0", 
+            "author_id": "5783b8a049e4faa95429c67e", 
+            "tab": "share", 
+            "content": "<div class=\"markdown-text\"><p>这几天碰到一个小坑，花了点时间调研了下，希望对后人有帮助
+描述：
+设想你有一个应用，对外暴露 2 个接口
+<a href=\"http://www.my.com/api/77\">http://www.my.com/api/77</a>
+<a href=\"http://www.my.com/api/88\">http://www.my.com/api/88</a>
+他们内部各自会依赖第三方的 http 接口
+接口 88 依赖: <a href=\"http://www.88.com/api%EF%BC%8Chttp\">http://www.88.com/api，http</a> 请求超时设置为 5S
+接口 77 依赖: <a href=\"http://www.77.com/api%EF%BC%8Chttp\">http://www.77.com/api，http</a> 请求超时设置为 5S
+假设你自己的应用所在的机器设置了一个 DNS SERVER，地址为 66.66.66.66，这台 DNS 更像一个代理，
+他对 <a href=\"http://www.88.com\">www.88.com</a> 的解析需要依赖上游的 88.88.88.88 这台 DNS 服务
+他对 <a href=\"http://www.77.com\">www.77.com</a> 的解析需要依赖上游的 77.77.77.77 这台 DNS 服务</p>
+<p>如果这时候 77.77.77.77 这台 DNS 挂了会发生什么？情况如下</p>
+<ol>
+<li>在 66.66.66.66 这台代理 DNS 代理中，对 <a href=\"http://www.77.com\">www.77.com</a>，<a href=\"http://www.88.com\">www.88.com</a> 的记录缓存都还没过期时一切正常</li>
+<li>当 66 对 <a href=\"http://www.77.com\">www.77.com</a> 的记录过期了，那么所有外部对你的 <a href=\"http://www.my.com/api/77\">www.my.com/api/77</a> 的访问都将失败，因为你内部无法访问 <a href=\"http://www.77.com\">www.77.com</a></li>
+<li>坑的地方来了， 当 66 对 <a href=\"http://www.88.com\">www.88.com</a> 的记录过期了，外部访问你的 <a href=\"http://www.my.com/api/88\">www.my.com/api/88</a> 会发生什么？答案是都有可能，既可能正常，也可能失败，原因如下：</li>
+</ol>
+<p>正常的原因就不赘述了，因为 88.88.88.88 服务器依然坚挺，即使记录过期了 66.66.66.66 还是可以问 88.88.88.88 拿到 <a href=\"http://www.88.com\">www.88.com</a> 的 IP
+那为什么会错误呢！因为 nodejs 的 runtime 默认使用了 4 个 worker 线程去处理 dns 解析请求。如果这 4 个线程都在处理对 77 的解析，那么这些线程都会 pending 在那边，直到 DNS 解析失败发生。（感受了一下好像是 10S，应该是 OS 的一个设置值）
+那在 pending 期间所有的对 <a href=\"http://www.88.com\">www.88.com</a> 的请求也都会被 pending 起来（因为 88 此时也需要解析，他在 66 中的记录已经过期了）。又因为 http 请求超时设置的是 5S，最终就都会变成 ETIMEDOUT 或者 ESOCKETTIMEDOUT</p>
+<p>此外，该问题还可能引发 v8 out of memory 的问题，原本一个请求花费 50MS，那么他占用的内存在 50MS 后就可以被 GC，但是当这个时间变成 5S 后，他占用的内存也要在 5S 后才能被 GC。如果 5S 内量很大，就有可能造成 OOM</p>
+</div>", 
+            "title": "[坑] 由 DNS 造成的 ETIMEDOUT 错误", 
+            "last_reply_at": "2017-05-19T08:39:40.754Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 5, 
+            "visit_count": 136, 
+            "create_at": "2017-05-19T07:52:39.334Z", 
+            "author": {
+                "loginname": "netssfy", 
+                "avatar_url": "https://avatars3.githubusercontent.com/u/6095138?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591d58a0d371b6372a8afb42", 
+            "author_id": "54b0f146ce87bace2444ceca", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><p>var data = 00000000000000000000000100111010;
+	console.log(data);
+	输出为：16814600
+	我想输出"00000000000000000000000100111010"字符串，这个要怎么处理呢，最好大神给个demo.
+	在线急求啊。。。</p>
+</div>", 
+            "title": "js 怎么把int32位二进制的0,1串，转成字符串格式的0,1串", 
+            "last_reply_at": "2017-05-19T08:36:06.626Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 8, 
+            "visit_count": 208, 
+            "create_at": "2017-05-18T08:17:36.818Z", 
+            "author": {
+                "loginname": "weierbufan", 
+                "avatar_url": "https://avatars2.githubusercontent.com/u/6757408?v=3&s=120"
+            }
+        }, 
+        {
+            "id": "591ea8133504ce1c2ac45e47", 
+            "author_id": "58f5cb59dcf05024569408fb", 
+            "tab": "ask", 
+            "content": "<div class=\"markdown-text\"><blockquote>
+<p>var Q = require(‘q’);
+var q1 = Q.defer();
+setTimeout(function(){
+	q1.resolve();
+}, 1000);
+Q.all([q1.promise]).then(function(){
+	console.log(new Date().aaa());
+	console.log(123);
+});</p>
+</blockquote>
+<p>首先直接执行new Date().aaa()控制台肯定会显示报错信息的，但是在这里的函数中并不会报错（在控制台），这是为什么呀~</p>
+</div>", 
+            "title": "和defer（Q）有关的一个问题", 
+            "last_reply_at": "2017-05-19T08:31:28.826Z", 
+            "good": false, 
+            "top": false, 
+            "reply_count": 1, 
+            "visit_count": 78, 
+            "create_at": "2017-05-19T08:08:51.640Z", 
+            "author": {
+                "loginname": "usercx", 
+                "avatar_url": "https://avatars0.githubusercontent.com/u/23071029?v=3&s=120"
+            }
+        }
+    ]
+}
